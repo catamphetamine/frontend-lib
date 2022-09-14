@@ -1,0 +1,163 @@
+@import "../styles/common";
+
+:root {
+	--ContentSection-margin: calc(var(--unit) * 1);
+
+	/*
+	--ContentSection-padding--horizontal: calc(var(--unit) * 2);
+	--ContentSection-padding--vertical: calc(var(--unit) * 1.5);
+	*/
+
+	--ContentSection-padding--horizontal: calc(var(--unit) * 1.5);
+	--ContentSection-padding--vertical: calc(var(--unit) * 1.5);
+
+	--ContentSection-shadow: 0 0.0005rem 0.1rem 0 var(--ContentSection-shadowColor), 0 0.1rem 0.75rem 0 var(--ContentSection-shadowColor);
+
+	/*--background-section-vertical-margin: var(--unit);*/
+
+	@mixin upto-xs {
+		--ContentSection-margin: calc(var(--unit) * 1);
+		--ContentSection-padding--horizontal: calc(var(--unit) * 1);
+		--ContentSection-padding--vertical: calc(var(--unit) * 1);
+
+		/*--background-section-vertical-margin: calc(var(--unit) * 2);*/
+	}
+}
+
+.content-section
+{
+	padding-left : var(--ContentSection-padding--horizontal);
+	padding-right : var(--ContentSection-padding--horizontal);
+	padding-top : var(--ContentSection-padding--vertical);
+	padding-bottom : var(--ContentSection-padding--vertical);
+	color : var(--Content-color-900);
+	background-color : var(--Content-backgroundColor);
+	/*border-radius : var(--border-radius);*/
+	box-shadow : var(--ContentSection-shadow);
+
+	@mixin xxs {
+		/*
+		margin-left  : calc(var(--column-padding) * -1);
+		margin-right : calc(var(--column-padding) * -1);
+		*/
+		border-radius : 0;
+	}
+}
+
+.content-section--vertical-margin
+{
+	margin-top : var(--ContentSection-margin);
+	margin-bottom : var(--ContentSection-margin);
+}
+
+.content-section--background
+{
+	background-color : transparent;
+	box-shadow : none;
+}
+
+.content-section--busy
+{
+	cursor : wait;
+}
+
+.content-section__header
+{
+	margin-top    : calc(-1 * var(--ContentSection-padding--vertical));
+	margin-bottom : var(--ContentSection-padding--vertical);
+	margin-left   : calc(-1 * var(--ContentSection-padding--horizontal));
+	margin-right  : calc(-1 * var(--ContentSection-padding--horizontal));
+	padding-left  : var(--ContentSection-padding--horizontal);
+	padding-right : var(--ContentSection-padding--horizontal);
+	padding-top      : 0.5em;
+	padding-bottom   : 0.45em;
+	border-bottom    : 1px solid var(--ContentSection-borderColor);
+	color            : currentColor;
+	font-weight      : normal;
+	font-size        : 1.4rem;
+	text-align       : left;
+}
+
+.content-section__header--lite {
+	margin-bottom: 0;
+	border-bottom: none;
+	font-size: 1.3rem;
+}
+
+/*.content-section__divider
+{
+	position         : absolute;
+	top              : 0;
+	height           : 1px;
+	background-color : var(--gray-color-400);
+}*/
+
+/*.content-section__errors
+{
+	margin-bottom : var(--ContentSection-padding--vertical);
+}*/
+
+/*.content-section__errors--top
+{
+	margin        : calc(-1 * var(--ContentSection-padding--vertical));
+	margin-bottom : var(--ContentSection-padding);
+	padding       : var(--ContentSection-padding);
+}*/
+
+/*.content-section--no-padding
+{
+	padding : 0;
+
+	.content-section__header
+	{
+		margin-top    : 0;
+		margin-bottom : 0;
+		margin-left   : 0;
+		margin-right  : 0;
+	}
+}*/
+
+/*.sections
+{
+	margin     : calc(var(--ContentSection-margin) / 2);
+	margin-top : calc(-1 * var(--ContentSection-margin) / 2);
+
+	&:first-child
+	{
+		margin-top : calc(var(--ContentSection-margin) / 2);
+	}
+}*/
+
+.content-sections {
+	.content-section {
+		margin-top: var(--unit);
+		margin-bottom: var(--unit);
+	}
+	.content-section:first-child {
+		margin-top: 0;
+	}
+	.content-section:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.content-section__description {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.content-section__description--marginBottomLarge {
+	margin-bottom: calc(var(--Document-lineHeight) * 1em);
+}
+
+.content-section__description--marginTopLarge {
+	margin-top: calc(var(--Document-lineHeight) * 1em);
+}
+
+.content-section__description--marginBottomMedium {
+	margin-bottom: calc(var(--Document-lineHeight) * 1em * 0.5);
+}
+
+.content-section__description--marginTopMedium {
+	margin-top: calc(var(--Document-lineHeight) * 1em * 0.5);
+}

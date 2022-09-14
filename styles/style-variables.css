@@ -1,0 +1,211 @@
+@import "./grid.mixins";
+
+/* Global. */
+:root {
+	/* Document. */
+	--Document-color: var(--Content-color-900);
+	--Document-backgroundColor: var(--Content-backgroundColor);
+	--Document-backgroundImage: none;
+	--Document-fontFamily: Roboto, sans-serif;
+	/* Roboto Mono looks bad when applied to code.
+	   Instead, it should only be used in special cases of monospace,
+	   and not for code. */
+	/*--Document-fontFamily--monospace: 'Roboto Mono', monospace;*/
+	--Document-fontFamily--monospace: monospace;
+	--Document-fontWeight: normal;
+
+	/* LinearProgress. */
+	--LinearProgress-backgroundColor: rgb(167, 202, 237);
+	--LinearProgress-color: #1976d2;
+	--LinearProgress-height: 4px;
+	--LinearProgress-animationTimingFactor: 1;
+	--LinearProgress-animationDuration: calc(2.1s * var(--LinearProgress-animationTimingFactor));
+	--LinearProgress-animationInterval: calc(1.18s * var(--LinearProgress-animationTimingFactor));
+
+	/* Announcement. */
+	--Announcement-backgroundColor: var(--Content-backgroundColor);
+	--Announcement-color: var(--Content-color-900);
+	--Announcement-borderWidth: 0px;
+	--Announcement-padding: var(--unit);
+	--Announcement-marginTop: 0px;
+	--Announcement-marginBottom: 0px;
+	--Announcement-link-color: var(--Clickable-color--text);
+	--Announcement-link-color--active: var(--Clickable-color--textActive);
+	--Announcement-link-borderBottom: none;
+	--Announcement-link-textDecoration: none;
+	--Announcement-boxShadow: none;
+
+	/* Text. */
+	--Text-maxWidth: 44em;
+	--Text-fontFamily: var(--Document-fontFamily);
+
+	/* Header. */
+	--Header-height: calc(var(--unit) * 3);
+	--Header-borderWidth: 1px;
+	--Header-color--textHover: var(--Clickable-color--text);
+	--Header-color--textActive: var(--Clickable-color--textActive);
+
+	/* Menu. */
+	--Menu-color: initial;
+	--Menu-color--selected: var(--Menu-color);
+
+	/* MenuIcon. */
+	--MenuIcon-width: calc(var(--unit) * 1.75);
+
+	/* Notification. */
+	--Notification-color: var(--Content-backgroundColor);
+	--Notification-backgroundColor: var(--Content-color-900);
+	--Notification-borderColor: var(--Content-color-400);
+	--Notification-borderWidth: 1px;
+
+	/* Notification (critical). */
+	--Notification-color--critical: var(--white-color);
+	--Notification-backgroundColor--critical: var(--Critical-backgroundColor);
+	--Notification-borderWidth--critical: 0;
+
+	/* Notification (warning). */
+	--Notification-color--warning: var(--black-color);
+	--Notification-backgroundColor--warning: var(--Warning-backgroundColor);
+	--Notification-borderWidth--warning: 0;
+
+	/* Modal. */
+	--Modal-borderColor: transparent;
+	--Modal-borderWidth: 0px;
+
+	/* Critical. */
+	--Critical-backgroundColor: var(--critical-color-600);
+
+	/* Warning. */
+	--Warning-color: var(--black-color);
+	--Warning-backgroundColor: #EFEB00;
+
+	/* Content. */
+	--Content-color-900: initial;
+	--Content-backgroundColor--active: initial;
+	--Content-fontWeight--bold: bolder;
+}
+
+/* Light mode. */
+.light {
+	/* Document. */
+	--Document-backgroundColor: #eaeaea;
+
+	/* Header. */
+	--Header-color: var(--Content-color-800);
+	--Header-backgroundColor: var(--Content-backgroundColor);
+	--Header-borderColor: rgba(0,0,0,.11);
+
+	/* Menu. */
+	--Menu-color--active: var(--gray-color-650);
+
+	/* BackButton. */
+	--BackButton-backgroundColor--hover: rgba(0,0,0,0.01);
+	--BackButton-borderColor--hover: rgba(0,0,0,0.04);
+
+	/* Clickable. */
+	--Clickable-color: var(--base-color-500);
+	--Clickable-color--active: var(--base-color-400);
+	/* "Clickable text" buttons are usually colored a bit darker. */
+	--Clickable-color--text: var(--base-color-700);
+	--Clickable-color--textActive: var(--base-color-600);
+
+	/* Critical. */
+	--Critical-color: var(--critical-color-600);
+
+	/* Selection. */
+	--Selection-color: var(--Content-color-900);
+	--Selection-backgroundColor: var(--base-color-300);
+
+	/* Content. */
+	--Content-backgroundColor: var(--white-color);
+	--Content-color-50:  var(--gray-color-50);
+	--Content-color-100: var(--gray-color-100);
+	--Content-color-200: var(--gray-color-200);
+	--Content-color-300: var(--gray-color-300);
+	--Content-color-400: var(--gray-color-400);
+	--Content-color-500: var(--gray-color-500);
+	--Content-color-600: var(--gray-color-600);
+	--Content-color-700: var(--gray-color-700);
+	--Content-color-800: var(--gray-color-800);
+	--Content-color-900: var(--gray-color-900);
+
+	/* ContentSection. */
+	/* `--ContentSection-borderColor` is not used currently. */
+	--ContentSection-borderColor: #e3e4e8;
+	--ContentSection-shadowColor: hsla(210,7%,61%,.15);
+}
+
+/* Dark Mode. */
+.dark {
+	/* Document. */
+	--Document-backgroundColor: #202020;
+
+	/* Header. */
+	--Header-color: var(--Content-color-900);
+	--Header-backgroundColor: var(--Content-color-100);
+	--Header-borderColor: rgba(255,255,255,.04);
+
+	/* Menu. */
+	--Menu-color--active: var(--Content-color-600);
+
+	/* BackButton. */
+	--BackButton-backgroundColor--hover: rgba(255,255,255,0.02);
+	--BackButton-borderColor--hover: rgba(255,255,255,0.04);
+
+	/* Notification. */
+	--Notification-color: var(--Content-color-900);
+	--Notification-backgroundColor: var(--Content-backgroundColor);
+	--Notification-borderColor: var(--Content-color-400);
+	--Notification-borderWidth: 1px;
+	--Notification-borderRadius: 0px;
+
+	/* Critical. */
+	--Critical-color: var(--critical-color-400);
+
+	/* Selection. */
+	--Selection-color: var(--Content-color-900);
+	--Selection-backgroundColor: var(--Content-color-800);
+
+	/* Content. */
+	/* https://refactoringui.com/previews/building-your-color-palette */
+	--Content-color-50:  #3f3f3f;
+	--Content-color-100: #444444;
+	--Content-color-200: #555555;
+	--Content-color-300: #646464;
+	--Content-color-400: #717171;
+	--Content-color-500: #797979;
+	--Content-color-600: #888888;
+	--Content-color-700: #989898;
+	--Content-color-800: #a0a0a0;
+	--Content-color-900: #b9b9b9;
+	--Content-backgroundColor: #383838;
+	/* The default "bold" font weight is too bold
+	   for white text on black background. */
+	--Content-fontWeight--bold: 500;
+
+	/* ContentSection. */
+	/* `--ContentSection-borderColor` is not used currently. */
+	--ContentSection-borderColor: #e3e4e8;
+	--ContentSection-shadowColor: rgba(0,0,0,0.5);
+
+	/* Clickable. */
+	--Clickable-color: var(--base-color-400);
+	--Clickable-color--active: var(--base-color-500);
+	/* "Clickable text" buttons are usually colored a bit darker. */
+	--Clickable-color--text: var(--base-color-300);
+	--Clickable-color--textActive: var(--base-color-400);
+
+	/* Modal. */
+	--Modal-borderColor: var(--Content-color-100);
+	--Modal-borderWidth: 1px;
+
+	/* PressedStateButton. */
+	--PressedStateButton-color--active: var(--base-color-300);
+	--PressedStateButton-color--pressed: var(--base-color-400);
+	--PressedStateButton-color--pressedActive: var(--PressedStateButton-color--active);
+	--PressedStateButton-backgroundColor--active: var(--Content-color-200);
+	--PressedStateButton-borderColor: var(--Content-color-200);
+	--PressedStateButton-borderColor--active: var(--Content-color-300);
+	--PressedStateButton-borderColor--pressed: var(--PressedStateButton-borderColor);
+	--PressedStateButton-borderColor--pressedActive: var(--PressedStateButton-borderColor--active);
+}

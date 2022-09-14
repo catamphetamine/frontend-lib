@@ -1,0 +1,30 @@
+@import "../styles/common";
+
+.rrui__snackbar,
+.rrui__snackbar__count {
+	color: var(--Notification-color);
+	background-color: var(--Notification-backgroundColor);
+}
+
+.rrui__snackbar {
+	border-radius: var(--Notification-borderRadius);
+	box-shadow: 0 0 0 var(--Notification-borderWidth) var(--Notification-borderColor);
+	@mixin xxs {
+		--rrui-snackbar-height: calc(var(--unit) * 3);
+		--rrui-snackbar-side-padding: var(--unit);
+	}
+	@mixin xs {
+		--rrui-snackbar-height: calc(var(--unit) * 3.5);
+		--rrui-snackbar-side-padding: var(--unit);
+	}
+}
+
+.rrui__snackbar__count {
+	border-color: var(--Notification-color);
+}
+
+.rrui__snackbar--critical {
+	color: var(--Notification-color--critical);
+	background-color: var(--Notification-backgroundColor--critical);
+	box-shadow: 0 0 0 var(--Notification-borderWidth--critical) var(--Notification-borderColor--critical);
+}

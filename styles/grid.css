@@ -1,0 +1,204 @@
+@import "./constants";
+@import "./grid.mixins";
+
+/*
+// A CSS grid
+//
+// Example usage:
+//
+// <div class="container">
+//   <div class="row">
+//     <div class="col-3"/>
+//     <div class="col-9"/>
+//   </div>
+// </div>
+
+Implementation copy-pasted from:
+https://github.com/kristoferjoseph/flexboxgrid/blob/master/src/css/flexboxgrid.css;
+*/
+
+.container
+{
+	margin-left   : auto;
+	margin-right  : auto;
+	padding-left  : var(--column-padding);
+	padding-right : var(--column-padding);
+	box-sizing    : border-box;
+	/* For cases when a container is inside a modal, for example. */
+	/*max-width : 100%;*/
+}
+
+/*.container--modal
+{
+	max-width     : calc(var(--unit) * (30 * 2 + 3));
+	padding-left  : 0;
+	padding-right : 0;
+}*/
+
+.row
+{
+	display        : flex;
+	flex           : 0 1 auto;
+	flex-direction : row;
+	flex-wrap      : wrap;
+	margin-left    : calc(-1 * var(--column-padding));
+	margin-right   : calc(-1 * var(--column-padding));
+	box-sizing     : border-box;
+}
+
+.row--align-top {
+	align-items: flex-start;
+}
+
+.row--align-bottom {
+	align-items: flex-end;
+}
+
+@define-mixin define_columns $infix
+{
+	.col$(infix)-1,
+	.col$(infix)-2,
+	.col$(infix)-3,
+	.col$(infix)-4,
+	.col$(infix)-5,
+	.col$(infix)-6,
+	.col$(infix)-7,
+	.col$(infix)-8,
+	.col$(infix)-9,
+	.col$(infix)-10,
+	.col$(infix)-11,
+	.col$(infix)-12
+	{
+		flex          : 0 0 auto;
+		box-sizing    : border-box;
+		padding-left  : var(--column-padding);
+		padding-right : var(--column-padding);
+	}
+
+	.col$(infix)-0
+	{
+		display: none;
+	}
+
+	.col$(infix)-1
+	{
+		flex-basis: 8.333333%;
+		max-width: 8.333333%;
+	}
+
+	.col$(infix)-2
+	{
+		flex-basis: 16.666667%;
+		max-width: 16.666667%;
+	}
+
+	.col$(infix)-3
+	{
+		flex-basis: 25%;
+		max-width: 25%;
+	}
+
+	.col$(infix)-4
+	{
+		flex-basis: 33.33333%;
+		max-width: 33.33333%;
+	}
+
+	.col$(infix)-5
+	{
+		flex-basis: 41.666667%;
+		max-width: 41.666667%;
+	}
+
+	.col$(infix)-6
+	{
+		flex-basis: 50%;
+		max-width: 50%;
+	}
+
+	.col$(infix)-7
+	{
+		flex-basis: 58.333333%;
+		max-width: 58.333333%;
+	}
+
+	.col$(infix)-8
+	{
+		flex-basis: 66.66666%;
+		max-width: 66.66666%;
+	}
+
+	.col$(infix)-9
+	{
+		flex-basis: 75%;
+		max-width: 75%;
+	}
+
+	.col$(infix)-10
+	{
+		flex-basis: 83.333333%;
+		max-width: 83.333333%;
+	}
+
+	.col$(infix)-11
+	{
+		flex-basis: 91.666667%;
+		max-width: 91.666667%;
+	}
+
+	.col$(infix)-12
+	{
+		flex-basis: 100%;
+		max-width: 100%;
+	}
+}
+
+@mixin define_columns;
+
+/* Responsive grid */
+
+@mixin xxs {
+	@mixin define_columns -xxs;
+}
+
+@mixin xs {
+	@mixin define_columns -xs;
+}
+
+@mixin s {
+	@mixin define_columns -s;
+
+	.container {
+		max-width: calc(var(--Window-minWidth--s) - 4 * var(--unit));
+	}
+}
+
+@mixin m {
+	@mixin define_columns -m;
+
+	.container {
+		max-width: var(--Window-minWidth--m);
+	}
+}
+
+@mixin l {
+	@mixin define_columns -l;
+
+	.container {
+		max-width: var(--Window-minWidth--l);
+	}
+}
+
+@mixin xl {
+	@mixin define_columns -xl;
+
+	.container {
+		max-width: var(--Window-minWidth--xl);
+	}
+}
+
+/*.col--no-padding
+{
+	padding-left  : 0;
+	padding-right : 0;
+}*/

@@ -1,0 +1,74 @@
+{
+	"languageName": "Deutsch",
+	"notifications": {
+		"title": "Benachrichtigungen",
+		"empty": "Keine neuen Benachrichtigungen"
+	},
+	"error": "Fehler",
+	"default": "Standard",
+	"darkMode": "Dunkler Modus",
+	"settings": {
+		"title": "Einstellungen"
+	},
+	"menu": "Speisekarte",
+	"contentType": {
+		"picture": "Bild",
+		"video": "Video",
+		"audio": "Audio",
+		"link": "Link",
+		"attachment": "Attachment"
+	},
+	"search": "Suche",
+	"noSearchResults": "Nichts gefunden",
+	"form": {
+		"error": {
+			"required": "Erforderlich"
+		}
+	},
+	"actions": {
+		"edit": "Bearbeiten",
+		"post": "Posten",
+		"save": "Speichern",
+		"add": "Hinzufügen",
+		"remove": "Entfernen",
+		"retry": "Wiederholen",
+		"ok": "Ok",
+		"cancel": "Stornieren",
+		"yes": "Ja",
+		"no": "Nein",
+		"close": "Schließen",
+		"accept": "Akzeptieren",
+		"learnMore": "Erfahren Sie mehr",
+		"search": "Suche",
+		"back": "Zurück",
+		"forward": "Nach vorne",
+		"undo": "Rückgängig machen",
+		"showAll": "Zeige alles",
+		"showMore": "Zeig mehr",
+		"showLess": "Zeige weniger"
+	},
+	"status": {
+		"done": "Erledigt"
+	},
+	"role": {
+		"administrator": "Administrator",
+		"moderator": "Moderator"
+	},
+	"errorPages": {
+		"404": {
+			"title": "Seite nicht gefunden"
+		},
+		"500": {
+			"title": "Error"
+		},
+		"503": {
+			"title": "Offline",
+			"description": "Verbindung zum Server konnte nicht hergestellt werden"
+		},
+		"requestedURL": "Seiten-URL"
+	},
+	"cookies": {
+		"notice": "Diese Website verwendet Cookies und lokalen Speicher, um Inhalte zu personalisieren, Funktionen für soziale Medien bereitzustellen und den Datenverkehr zu analysieren.",
+		"required": "Sie müssen zuerst die Richtlinien für Cookies und lokalen Speicher akzeptieren."
+	}
+}

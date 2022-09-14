@@ -1,0 +1,101 @@
+@import "react-responsive-ui/style.css";
+@import "./grid.mixins";
+
+@import "react-responsive-ui/small-screen/Modal.css" (max-width: var(--Window-maxWidth--xxs));
+@import "react-responsive-ui/small-screen/Snackbar.css" (max-width: var(--Window-maxWidth--xxs));
+@import "react-responsive-ui/small-screen/DatePicker.InputOverlay.css" (max-width: var(--Window-maxWidth--xxs));
+
+:root {
+	--rrui-unit               : var(--unit);
+
+	--rrui-white-color        : var(--Content-backgroundColor);
+	--rrui-black-color        : var(--Content-color-900);
+	--rrui-accent-color       : var(--Clickable-color);
+	--rrui-accent-color-light : var(--Clickable-color--active);
+	--rrui-gray-color         : var(--Content-color-300);
+	--rrui-gray-color-light   : var(--Content-color-200);
+	--rrui-gray-color-lightest: var(--Content-color-100);
+	--rrui-error-color        : var(--Critical-color);
+
+	--rrui-input-height: calc(var(--unit) * 2.5);
+	--rrui-list-item-height: calc(var(--rrui-unit) * 3.5);
+	--rrui-list-vertical-padding: calc(var(--rrui-unit) * 0.5);
+	--rrui-list-item-background-color-focus: var(--Content-color-50);
+	--rrui-expandable-menu-item-side-padding: calc(var(--rrui-unit) * 1.5);
+	--rrui-input-field-background-color: transparent;
+	--rrui-input-field-label-color-focus: var(--Clickable-color--text);
+	--rrui-checkbox-fill-color: var(--Content-backgroundColor);
+	--rrui-button-transition: none;
+	--rrui-tooltip-opacity: 0.85;
+
+	--rrui-input-field-border-width: 0px;
+
+	--rrui-expansion-panel-content-padding-top: var(--unit);
+	--rrui-expansion-panel-content-padding-bottom: var(--unit);
+}
+
+.dark {
+	--rrui-input-field-label-color: var(--Content-color-600);
+	--rrui-checkbox-fill-color: var(--Content-color-600);
+	--rrui-switch-knob-background-color: var(--Content-backgroundColor);
+}
+
+/* Firefox is being stubbort with outlines. */
+/* https://stackoverflow.com/questions/71074/how-to-remove-firefoxs-dotted-outline-on-buttons-as-well-as-links */
+/* Actually having tab-only outlines is good UX. */
+/*
+.rrui__button-reset:not(.rrui__outline--default)::-moz-focus-inner {
+	border: 0;
+}
+*/
+
+.rrui__modal__contents {
+	max-width: calc(100vw - var(--rrui-unit) * 2);
+	width: calc(var(--rrui-unit) * 40);
+}
+
+.rrui__input--monospace .rrui__input-field {
+	font-family: var(--Document-fontFamily--monospace);
+}
+
+.rrui__modal__actions .form__action {
+	margin-top: 0;
+}
+
+.rrui__modal__contents {
+	box-shadow: 0 0 0 var(--Modal-borderWidth) var(--Modal-borderColor);
+}
+
+/* Remove this rule after a new version of
+   `react-responsive-ui@>0.14.148` is released. */
+.rrui__fixed-full-width {
+	top: auto;
+}
+
+.rrui__expansion-panel__heading {
+	padding-top: 0.05em;
+	padding-bottom: 0.05em;
+	margin-top: 0.1em;
+	margin-bottom: 0.1em;
+	border-top: 1px solid transparent;
+	border-bottom: 1px solid transparent;
+}
+
+.rrui__expansion-panel__header {
+	&:focus {
+		.rrui__expansion-panel__heading {
+			border-bottom-color: var(--Clickable-color);
+		}
+	}
+	&:active {
+		.rrui__expansion-panel__heading {
+			border-bottom-color: var(--Clickable-color--active);
+		}
+	}
+}
+
+.rrui__input-field,
+.rrui__select__button,
+.rrui__select__native {
+	border-bottom-width: 1px;
+}

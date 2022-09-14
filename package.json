@@ -1,0 +1,30 @@
+{
+  "private": true,
+  "name": "frontend-lib",
+  "version": "0.1.0",
+  "description": "Frontend utilities",
+  "type": "module",
+  "main": "index.js",
+  "sideEffects": ["*.css"],
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0"
+  },
+  "scripts": {
+    "test": "node --experimental-json-modules node_modules/mocha/bin/_mocha --require ./test/setup.js --reporter spec --colors --bail --exit --recursive \"./{,!(node_modules)/**/}*.test.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/catamphetamine/frontend-lib.git"
+  },
+  "keywords": [
+    "frontend",
+    "lib"
+  ],
+  "author": "catamphetamine <purecatamphetamine@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/catamphetamine/frontend-lib/issues"
+  },
+  "homepage": "https://gitlab.com/catamphetamine/frontend-lib#readme"
+}

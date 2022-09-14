@@ -1,0 +1,74 @@
+{
+	"languageName": "English",
+	"notifications": {
+		"title": "Notifications",
+		"empty": "No new notifications"
+	},
+	"error": "Error",
+	"default": "Default",
+	"darkMode": "Dark mode",
+	"settings": {
+		"title": "Settings"
+	},
+	"menu": "Menu",
+	"contentType": {
+		"picture": "Picture",
+		"video": "Video",
+		"audio": "Audio",
+		"link": "Link",
+		"attachment": "Attachment"
+	},
+	"search": "Search",
+	"noSearchResults": "Nothing found",
+	"form": {
+		"error": {
+			"required": "Required"
+		}
+	},
+	"actions": {
+		"edit": "Edit",
+		"post": "Post",
+		"save": "Save",
+		"add": "Add",
+		"remove": "Remove",
+		"retry": "Retry",
+		"ok": "Ok",
+		"cancel": "Cancel",
+		"yes": "Yes",
+		"no": "No",
+		"close": "Close",
+		"accept": "Accept",
+		"learnMore": "Learn more",
+		"search": "Search",
+		"back": "Back",
+		"forward": "Forward",
+		"undo": "Undo",
+		"showAll": "Show all",
+		"showMore": "Show more",
+		"showLess": "Show less"
+	},
+	"status": {
+		"done": "Done"
+	},
+	"role": {
+		"administrator": "Administrator",
+		"moderator": "Moderator"
+	},
+	"errorPages": {
+		"404": {
+			"title": "Page not found"
+		},
+		"500": {
+			"title": "Error"
+		},
+		"503": {
+			"title": "Offline",
+			"description": "Couldn't connect to the server"
+		},
+		"requestedURL": "Page URL"
+	},
+	"cookies": {
+		"notice": "This website uses Cookies and Local Storage to personalise content, to provide social media features and to analyse traffic.",
+		"required": "You must accept the Cookies and Local Storage policy first."
+	}
+}

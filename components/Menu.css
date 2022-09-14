@@ -1,0 +1,118 @@
+@import "../styles/common";
+
+.menu {
+	--MenuIcon-padding: calc(var(--MenuIcon-width) / 3.5);
+	display: flex;
+	align-items: center;
+	/* "Negative" margins when set directly on `.menu`
+	   cause issues when used on left/right side:
+	   they stretch page width beyond `100%`
+	   if `padding-left`/`padding-right` is set on `.menu`.
+	   Instead, "negative" margins are set on `<li/>`s below. */
+	/*
+	margin-left: calc(-1 * var(--MenuIcon-padding));
+	margin-right: calc(-1 * var(--MenuIcon-padding));
+	*/
+}
+
+.menu-item-container {
+	flex : 1;
+}
+
+.menu-item {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: var(--MenuIcon-width);
+	height: var(--MenuIcon-width);
+	/* Don't include side padding in width. */
+	box-sizing: content-box;
+	padding-left: var(--MenuIcon-padding);
+	padding-right: var(--MenuIcon-padding);
+	/*--rrui-button-side-padding: var(--MenuIcon-padding);*/
+	/*--rrui-button-busy-indicator-width: 1px;*/
+	color: var(--Menu-color);
+	&:active {
+		color: var(--Menu-color--active);
+	}
+	&:first-child {
+		margin-left: calc(-1 * var(--MenuIcon-padding));
+	}
+	&:last-child {
+		margin-right: calc(-1 * var(--MenuIcon-padding));
+	}
+}
+
+.menu-item--selected {
+	color: var(--Menu-color--selected);
+}
+
+.menu-item__icon {
+	display: none;
+	/*
+	width: var(--MenuIcon-width);
+	height: var(--MenuIcon-width);
+	*/
+	width: 100%;
+	height: 100%;
+	/* A weird fix for Tor Browser, otherwise it wouldn't navigate
+	  to the `/settings` page on `captchan` site when clicking the icon. */
+	pointer-events: none;
+	/* Fixes <svg/> icons being cut off in iOS Safari. */
+	/* https://stackoverflow.com/questions/24894921/svg-being-cut-off */
+	overflow: visible;
+}
+
+.menu-item--s {
+	.menu-item__icon {
+		padding: calc(var(--MenuIcon-width) / 20);
+	}
+}
+
+.menu-item--xl {
+	.menu-item__icon {
+		width: calc(var(--MenuIcon-width) + var(--MenuIcon-padding));
+		height: calc(var(--MenuIcon-width) + var(--MenuIcon-padding));
+	}
+}
+
+.menu-item--xxl {
+	.menu-item__icon {
+		width: calc(var(--MenuIcon-width) + var(--MenuIcon-padding) + var(--MenuIcon-width) / 4);
+		height: calc(var(--MenuIcon-width) + var(--MenuIcon-padding) + var(--MenuIcon-width) / 4);
+		margin-left: calc(-1 * var(--MenuIcon-width) / 6);
+		margin-right: calc(-1 * var(--MenuIcon-width) / 6);
+	}
+}
+
+.menu-item__icon--pop {
+	display: block;
+}
+
+.menu-item__icon--outline {
+	display: block;
+}
+
+.menu-item__icon--fill {
+	display: none;
+}
+
+.menu-item--fill:active .menu-item__icon--outline,
+.menu-item--selected .menu-item__icon--outline {
+	display: none;
+}
+
+.menu-item--fill:active .menu-item__icon--fill,
+.menu-item--selected .menu-item__icon--fill {
+	display: block;
+}
+
+.menu-separator {
+	width: 1px;
+	height: var(--MenuIcon-width);
+	margin-left: calc(var(--MenuIcon-width) / 2);
+	margin-right: calc(var(--MenuIcon-width) / 2);
+	color: inherit;
+	background-color: currentColor;
+	opacity: 0.1;
+}

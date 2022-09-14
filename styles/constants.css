@@ -1,0 +1,90 @@
+@import "./grid.mixins";
+
+:root {
+	--white-color : hsl(0, 0%, 100%);
+	--black-color : hsl(0, 0%, 0%);
+
+	--gray-color-transparent : hsla(0, 0%, 0%, 0.015);
+
+	/* https://refactoringui.com/previews/building-your-color-palette */
+	--gray-color-50  : hsl(0, 0%, 96%);
+	--gray-color-100 : hsl(0, 0%, 92%);
+	--gray-color-200 : hsl(0, 0%, 87%);
+	--gray-color-300 : hsl(0, 0%, 81%);
+	--gray-color-400 : hsl(0, 0%, 72%);
+	--gray-color-500 : hsl(0, 0%, 60%);
+	--gray-color-600 : hsl(0, 0%, 48%);
+	--gray-color-650 : hsl(0, 0%, 45%);
+	--gray-color-700 : hsl(0, 0%, 40%);
+	--gray-color-750 : hsl(0, 0%, 36%);
+	--gray-color-800 : hsl(0, 0%, 32%);
+	--gray-color-900 : hsl(0, 0%, 27%);
+
+	/* https://refactoringui.com/previews/building-your-color-palette */
+	--base-color-100 : hsl(198, 100%, 80%);
+	--base-color-200 : hsl(198, 100%, 69%);
+	--base-color-300 : hsl(198, 100%, 62%);
+	--base-color-400 : hsl(198, 100%, 57%);
+	--base-color-500 : hsl(198, 100%, 50%);
+	--base-color-600 : hsl(198, 100%, 41%);
+	--base-color-700 : hsl(198, 100%, 37%);
+	--base-color-800 : hsl(198, 100%, 29%);
+	--base-color-900 : hsl(198, 100%, 18%);
+
+	/* Base color transparency: hsla(198, 100%, 50%, 0.6); */
+
+	/* https://refactoringui.com/previews/building-your-color-palette */
+	--accent-color-100 : hsl(338, 100%, 83%);
+	--accent-color-200 : hsl(338, 100%, 74%);
+	--accent-color-300 : hsl(338, 100%, 66%);
+	--accent-color-400 : hsl(338, 100%, 58%);
+	--accent-color-500 : hsl(338, 100%, 50%);
+	--accent-color-600 : hsl(338, 100%, 43%);
+	--accent-color-700 : hsl(338, 100%, 37%);
+	--accent-color-800 : hsl(338, 100%, 30%);
+	--accent-color-900 : hsl(338, 100%, 22%);
+
+	/* critical color */
+	/* warning color */
+	/* positive color */
+	/* https://refactoringui.com/previews/building-your-color-palette */
+	--critical-color-100 : hsl(353, 100%, 82%);
+	--critical-color-200 : hsl(353, 100%, 75%);
+	--critical-color-300 : hsl(353, 100%, 68%);
+	--critical-color-400 : hsl(353, 100%, 62%);
+	--critical-color-500 : hsl(353, 100%, 45%);
+	--critical-color-600 : hsl(353, 100%, 41%);
+	--critical-color-700 : hsl(353, 100%, 37%);
+	--critical-color-800 : hsl(353, 100%, 32%);
+	--critical-color-900 : hsl(353, 100%, 23%);
+
+	--unit : 14px;
+	--column-padding : var(--unit);
+
+	/* Some magic number seen on the Internet. */
+	--Document-lineHeight: 1.52947;
+
+	/*
+	Mobile font size must be at least `16px`
+	to prevent automatic zoom on input focus.
+	*/
+	--Document-fontSize--xxs: 16px;
+	--Document-fontSize--xs: 18px;
+	--Document-fontSize--s: 19px;
+	--Document-fontSize--m: 20px;
+
+	--preloading-screen-z-index : 10;
+
+	--border-radius : 0.2rem;
+	--shadow : 0 2px 5px 0 hsla(0, 0%, 0%, 0.16), 0 2px 10px 0 hsla(0, 0%, 0%, 0.12);
+
+	--button-on-background-background-color : hsla(0, 0%, 0%, 0.6);
+	--button-on-background-color : var(--white-color);
+	--primary-button-on-background-background-color : hsla(198, 100%, 46%, 0.8);
+
+	--footer-menu-height : calc(var(--unit) * 3);
+}
+
+.dark {
+	--white-color: hsl(0, 0%, 88%);
+}
