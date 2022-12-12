@@ -11,7 +11,6 @@ export function Form({
 	return (
 		<Form_
 			ref={ref}
-			onError={onError}
 			{...rest}
 		/>
 	)
