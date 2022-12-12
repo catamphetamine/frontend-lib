@@ -56,8 +56,13 @@
 	display: block;
 	height: var(--FormAction-height);
 	margin-right: var(--FormAction-margin--horizontal);
+
 	&:last-child {
 		margin-right: 0;
+	}
+
+	&--inline {
+		height: var(--FormInput-height);
 	}
 }
 

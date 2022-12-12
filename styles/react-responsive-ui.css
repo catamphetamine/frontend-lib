@@ -17,12 +17,13 @@
 	--rrui-gray-color-lightest: var(--Content-color-100);
 	--rrui-error-color        : var(--Critical-color);
 
-	--rrui-input-height: calc(var(--unit) * 2.5);
+	--rrui-input-height: var(--FormInput-height);
 	--rrui-list-item-height: calc(var(--rrui-unit) * 3.5);
 	--rrui-list-vertical-padding: calc(var(--rrui-unit) * 0.5);
 	--rrui-list-item-background-color-focus: var(--Content-color-50);
 	--rrui-expandable-menu-item-side-padding: calc(var(--rrui-unit) * 1.5);
 	--rrui-input-field-background-color: transparent;
+	--rrui-input-field-label-color: var(--Content-color-500);
 	--rrui-input-field-label-color-focus: var(--Clickable-color--text);
 	--rrui-checkbox-fill-color: var(--Content-backgroundColor);
 	--rrui-button-transition: none;

@@ -73,6 +73,8 @@
 	--Document-fontSize--s: 19px;
 	--Document-fontSize--m: 20px;
 
+	--FormInput-height: calc(var(--unit) * 2.5);
+
 	--preloading-screen-z-index : 10;
 
 	--border-radius : 0.2rem;
