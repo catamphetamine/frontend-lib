@@ -5,24 +5,17 @@ export { Field } from 'easy-react-form'
 
 import './Form.css'
 
-export function Form({
-	...rest
-}, ref) {
-	return (
-		<Form_
-			ref={ref}
-			{...rest}
-		/>
-	)
-}
+export const Form = React.forwardRef((props, ref) => (
+	<Form_
+		ref={ref}
+		{...props}
+	/>
+))
 
-Form = React.forwardRef(Form)
-
-const Submit__ = (props, ref) => (
+export const Submit = React.forwardRef((props, ref) => (
 	<Submit_
 		ref={ref}
 		type="submit"
-		{...props}/>
-)
-
-export const Submit = React.forwardRef(Submit__)
+		{...props}
+	/>
+))
