@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-pages'
 import classNames from 'classnames'
 
-import Button from './Button.js'
+import Button from './ButtonAsync.js'
 import PopIconButton from './PopIconButton.js'
 
 import './Menu.css'
@@ -62,6 +62,7 @@ function MenuItem({
 	title,
 	icon,
 	iconActive,
+	wait,
 	animate,
 	size,
 	pathname,
@@ -105,6 +106,7 @@ function MenuItem({
 	if (onClick) {
 		return (
 			<Button
+				wait={wait}
 				title={title}
 				onClick={onClick}
 				className={className}>
