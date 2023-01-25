@@ -173,7 +173,7 @@ export default function TextSelectionTooltip({
 	// const transitions = useTransition(isTooltipShown + tooltipPlacement, null, {
 	// 	unique: true,
 	// 	from: {
-	// 		transform: `translateY(${tooltipPlacement === 'bottom' ? '' : '-'}${distance}px) scale(${scale})`,
+	// 		transform: `translateY(${tooltipPlacement === 'bottom' ? '' : '-'}${px(distance)}) scale(${scaleFactor(scale)})`,
 	// 		opacity: 0
 	// 	},
 	// 	enter: {
@@ -181,7 +181,7 @@ export default function TextSelectionTooltip({
 	// 		opacity: 1
 	// 	},
 	// 	leave: {
-	// 		transform: `translateY(${tooltipPlacement === 'bottom' ? '' : '-'}${distance}px) scale(${scale})`,
+	// 		transform: `translateY(${tooltipPlacement === 'bottom' ? '' : '-'}${px(distance)}) scale(${scaleFactor(scale)})`,
 	// 		opacity: 0
 	// 	}
 	// })
