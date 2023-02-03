@@ -8,10 +8,13 @@ import { Snackbar } from 'react-responsive-ui'
 
 import './Snackbar.css'
 
-export default function SnackBar() {
+export default function SnackBar(props) {
 	const notification = useSelector(({ notifications }) => notifications.notification)
+
 	return (
 		<Snackbar
-			value={notification} />
+			{...props}
+			value={notification}
+		/>
 	)
 }
