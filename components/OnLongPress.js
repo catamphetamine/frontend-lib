@@ -16,7 +16,7 @@ const isTouch = typeof window !== 'undefined' && (
 )
 
 export default function OnLongPress({
-	touch,
+	touchOnly,
 	delay,
 	onLongPress,
 	suppressClickEvent,
@@ -246,13 +246,11 @@ export default function OnLongPress({
 
 	handlers.onDragStart = onLongPressCancel
 
-	React.Children.only(children)
-
-	if (touch && !isTouch) {
-		return children
+	if (touchOnly && !isTouch) {
+		return children({})
 	}
 
-	return React.cloneElement(children, handlers)
+	return children(handlers)
 }
 
 OnLongPress.propTypes = {
@@ -260,7 +258,7 @@ OnLongPress.propTypes = {
 	 * Pass `true` to only handle touch events.
 	 * @type {number}
 	 */
-	touch: PropTypes.bool,
+	touchOnly: PropTypes.bool,
 
 	/**
 	 * The duration a user has to "press" in order for a long press event to get triggered.
@@ -294,9 +292,11 @@ OnLongPress.propTypes = {
 	maxMoveDistanceY: PropTypes.number.isRequired,
 
 	/**
-	 * The wrapped element that will be listening to "long press" events.
+	 * A function that should return a React element that will be listening to "long press" events.
+	 * The function receives an argument containing the props that should be set on that element.
+	 * Example: `(clickableElementPropsType) => <div {...clickableElementPropsType}/>`.
 	 */
-	children: PropTypes.node.isRequired
+	children: PropTypes.func.isRequired
 }
 
 OnLongPress.defaultProps = {
@@ -304,6 +304,32 @@ OnLongPress.defaultProps = {
 	maxMoveDistanceX: 10,
 	maxMoveDistanceY: 10
 }
+
+export const clickableElementPropsType = PropTypes.oneOfType([
+	// For non-touch devices when `touchOnly` property is passed.
+	PropTypes.shape({}),
+	// For devices that only support touch events.
+	PropTypes.shape({
+		onTouchStart: PropTypes.func.isRequired,
+		onTouchEnd: PropTypes.func.isRequired,
+		onTouchMove: PropTypes.func.isRequired,
+		onTouchCancel: PropTypes.func.isRequired,
+		onDragStart: PropTypes.func.isRequired,
+	}),
+	// For devices that support touch events or pointer events.
+	PropTypes.shape({
+		onTouchStart: PropTypes.func.isRequired,
+		onTouchEnd: PropTypes.func.isRequired,
+		onTouchMove: PropTypes.func.isRequired,
+		onTouchCancel: PropTypes.func.isRequired,
+		onDragStart: PropTypes.func.isRequired,
+		onMouseDown: PropTypes.func.isRequired,
+		onMouseUp: PropTypes.func.isRequired,
+		onMouseMove: PropTypes.func.isRequired,
+		onMouseLeave: PropTypes.func.isRequired
+	})
+])
+
 
 /**
 * Cancels the current event

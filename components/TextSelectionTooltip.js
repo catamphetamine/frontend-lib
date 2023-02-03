@@ -159,6 +159,9 @@ export default function TextSelectionTooltip({
 	// so that it could calculate the correct tooltip position.
 	// So, only at that step can tooltip position be updated.
 	//
+	// This effect is run on every re-render
+	// but it only does its thing once.
+	//
 	useLayoutEffect(() => {
 		if (shouldUpdateTooltipPosition.current) {
 			if (updateTooltipPosition) {
