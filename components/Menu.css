@@ -19,32 +19,38 @@
 	flex : 1;
 }
 
-.menu-item {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: var(--MenuIcon-width);
-	height: var(--MenuIcon-width);
-	/* Don't include side padding in width. */
-	box-sizing: content-box;
-	padding-left: var(--MenuIcon-padding);
-	padding-right: var(--MenuIcon-padding);
-	/*--rrui-button-side-padding: var(--MenuIcon-padding);*/
-	/*--rrui-button-busy-indicator-width: 1px;*/
-	color: var(--Menu-color);
-	&:active {
-		color: var(--Menu-color--active);
+/* Added `.menu` parent selector so that `.Button` styles
+   don't overwrite `.menu-item` styles in production mode
+   when Webpack decides to put all CSS in a single file
+   with `.Button` styles being placed after `.menu-item` styles. */
+.menu {
+	.menu-item {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: var(--MenuIcon-width);
+		height: var(--MenuIcon-width);
+		/* Don't include side padding in width. */
+		box-sizing: content-box;
+		padding-left: var(--MenuIcon-padding);
+		padding-right: var(--MenuIcon-padding);
+		/*--rrui-button-side-padding: var(--MenuIcon-padding);*/
+		/*--rrui-button-busy-indicator-width: 1px;*/
+		color: var(--Menu-color);
+		&:active {
+			color: var(--Menu-color--active);
+		}
+		&:first-child {
+			margin-left: calc(-1 * var(--MenuIcon-padding));
+		}
+		&:last-child {
+			margin-right: calc(-1 * var(--MenuIcon-padding));
+		}
 	}
-	&:first-child {
-		margin-left: calc(-1 * var(--MenuIcon-padding));
-	}
-	&:last-child {
-		margin-right: calc(-1 * var(--MenuIcon-padding));
-	}
-}
 
-.menu-item--selected {
-	color: var(--Menu-color--selected);
+	.menu-item--selected {
+		color: var(--Menu-color--selected);
+	}
 }
 
 .menu-item__icon {
