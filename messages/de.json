@@ -11,13 +11,6 @@
 		"title": "Einstellungen"
 	},
 	"menu": "Speisekarte",
-	"contentType": {
-		"picture": "Bild",
-		"video": "Video",
-		"audio": "Audio",
-		"link": "Link",
-		"attachment": "Attachment"
-	},
 	"search": "Suche",
 	"noSearchResults": "Nichts gefunden",
 	"form": {

@@ -11,13 +11,6 @@
 		"title": "Settings"
 	},
 	"menu": "Menu",
-	"contentType": {
-		"picture": "Picture",
-		"video": "Video",
-		"audio": "Audio",
-		"link": "Link",
-		"attachment": "Attachment"
-	},
 	"search": "Search",
 	"noSearchResults": "Nothing found",
 	"form": {

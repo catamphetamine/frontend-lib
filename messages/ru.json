@@ -11,13 +11,6 @@
 		"title": "Настройки"
 	},
 	"menu": "Меню",
-	"contentType": {
-		"picture": "Картинка",
-		"video": "Видео",
-		"audio": "Аудиозапись",
-		"link": "Ссылка",
-		"attachment": "Вложение"
-	},
 	"search": "Поиск",
 	"noSearchResults": "Ничего не найдено",
 	"form": {
