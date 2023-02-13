@@ -4,13 +4,13 @@ import { Modal } from 'react-responsive-ui'
 
 import Button from './Button.js'
 
-let _onShow
+const globals = {}
 
 export default function OkCancelModal(props) {
 	const [modals, setModals] = useState([])
 
 	useMemo(() => {
-		_onShow = (parameters) => {
+		globals.show = (parameters) => {
 			return new Promise((resolve) => {
 				setModals(modals.concat({
 					...parameters,
@@ -42,7 +42,7 @@ export default function OkCancelModal(props) {
 	)
 }
 
-OkCancelModal.show = _onShow
+OkCancelModal.show = (parameters) => globals.show(parameters)
 
 function OkCancelModal_({
 	title,
