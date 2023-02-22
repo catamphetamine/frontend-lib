@@ -1,0 +1,86 @@
+@import "./grid.mixins";
+
+/* Global. */
+:root {
+	/* Document. */
+	--Document-color: var(--Content-color-900);
+	--Document-backgroundColor: var(--Content-backgroundColor);
+	--Document-backgroundImage: none;
+	--Document-fontFamily: Roboto, sans-serif;
+	/* Roboto Mono looks bad when applied to code.
+	   Instead, it should only be used in special cases of monospace,
+	   and not for code. */
+	/*--Document-fontFamily--monospace: 'Roboto Mono', monospace;*/
+	--Document-fontFamily--monospace: monospace;
+	--Document-fontWeight: normal;
+
+	/* LinearProgress. */
+	--LinearProgress-backgroundColor: rgb(167, 202, 237);
+	--LinearProgress-color: #1976d2;
+	--LinearProgress-height: 4px;
+	--LinearProgress-animationTimingFactor: 1;
+	--LinearProgress-animationDuration: calc(2.1s * var(--LinearProgress-animationTimingFactor));
+	--LinearProgress-animationInterval: calc(1.18s * var(--LinearProgress-animationTimingFactor));
+
+	/* Announcement. */
+	--Announcement-backgroundColor: var(--Content-backgroundColor);
+	--Announcement-color: var(--Content-color-900);
+	--Announcement-borderWidth: 0px;
+	--Announcement-padding: var(--unit);
+	--Announcement-marginTop: 0px;
+	--Announcement-marginBottom: 0px;
+	--Announcement-link-color: var(--Clickable-color--text);
+	--Announcement-link-color--active: var(--Clickable-color--textActive);
+	--Announcement-link-borderBottom: none;
+	--Announcement-link-textDecoration: none;
+	--Announcement-boxShadow: none;
+
+	/* Text. */
+	--Text-maxWidth: 44em;
+	--Text-fontFamily: var(--Document-fontFamily);
+
+	/* Header. */
+	--Header-height: calc(var(--unit) * 3);
+	--Header-borderWidth: 1px;
+	--Header-color--textHover: var(--Clickable-color--text);
+	--Header-color--textActive: var(--Clickable-color--textActive);
+
+	/* Menu. */
+	--Menu-color: initial;
+	--Menu-color--selected: var(--Menu-color);
+
+	/* MenuIcon. */
+	--MenuIcon-width: calc(var(--unit) * 1.75);
+
+	/* Notification. */
+	--Notification-color: var(--Content-backgroundColor);
+	--Notification-backgroundColor: var(--Content-color-900);
+	--Notification-borderColor: var(--Content-color-400);
+	--Notification-borderWidth: 1px;
+
+	/* Notification (critical). */
+	--Notification-color--critical: var(--white-color);
+	--Notification-backgroundColor--critical: var(--Critical-backgroundColor);
+	--Notification-borderWidth--critical: 0;
+
+	/* Notification (warning). */
+	--Notification-color--warning: var(--black-color);
+	--Notification-backgroundColor--warning: var(--Warning-backgroundColor);
+	--Notification-borderWidth--warning: 0;
+
+	/* Modal. */
+	--Modal-borderColor: transparent;
+	--Modal-borderWidth: 0px;
+
+	/* Critical. */
+	--Critical-backgroundColor: var(--critical-color-600);
+
+	/* Warning. */
+	--Warning-color: var(--black-color);
+	--Warning-backgroundColor: #EFEB00;
+
+	/* Content. */
+	--Content-color-900: initial;
+	--Content-backgroundColor--active: initial;
+	--Content-fontWeight--bold: bolder;
+}

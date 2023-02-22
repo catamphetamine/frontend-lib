@@ -1,0 +1,74 @@
+/* Dark Mode. */
+.dark {
+	/* Document. */
+	--Document-backgroundColor: #202020;
+
+	/* Header. */
+	--Header-color: var(--Content-color-900);
+	--Header-backgroundColor: var(--Content-color-100);
+	--Header-borderColor: rgba(255,255,255,.04);
+
+	/* Menu. */
+	--Menu-color--active: var(--Content-color-600);
+
+	/* BackButton. */
+	--BackButton-backgroundColor--hover: rgba(255,255,255,0.02);
+	--BackButton-borderColor--hover: rgba(255,255,255,0.04);
+
+	/* Notification. */
+	--Notification-color: var(--Content-color-900);
+	--Notification-backgroundColor: var(--Content-backgroundColor);
+	--Notification-borderColor: var(--Content-color-400);
+	--Notification-borderWidth: 1px;
+	--Notification-borderRadius: 0px;
+
+	/* Critical. */
+	--Critical-color: var(--critical-color-400);
+
+	/* Selection. */
+	--Selection-color: var(--Content-color-900);
+	--Selection-backgroundColor: var(--Content-color-800);
+
+	/* Content. */
+	/* https://refactoringui.com/previews/building-your-color-palette */
+	--Content-color-50:  #3f3f3f;
+	--Content-color-100: #444444;
+	--Content-color-200: #555555;
+	--Content-color-300: #646464;
+	--Content-color-400: #717171;
+	--Content-color-500: #797979;
+	--Content-color-600: #888888;
+	--Content-color-700: #989898;
+	--Content-color-800: #a0a0a0;
+	--Content-color-900: #b9b9b9;
+	--Content-backgroundColor: #383838;
+	/* The default "bold" font weight is too bold
+	   for white text on black background. */
+	--Content-fontWeight--bold: 500;
+
+	/* ContentSection. */
+	/* `--ContentSection-borderColor` is not used currently. */
+	--ContentSection-borderColor: #e3e4e8;
+	--ContentSection-shadowColor: rgba(0,0,0,0.5);
+
+	/* Clickable. */
+	--Clickable-color: var(--base-color-400);
+	--Clickable-color--active: var(--base-color-500);
+	/* "Clickable text" buttons are usually colored a bit darker. */
+	--Clickable-color--text: var(--base-color-300);
+	--Clickable-color--textActive: var(--base-color-400);
+
+	/* Modal. */
+	--Modal-borderColor: var(--Content-color-100);
+	--Modal-borderWidth: 1px;
+
+	/* PressedStateButton. */
+	--PressedStateButton-color--active: var(--base-color-300);
+	--PressedStateButton-color--pressed: var(--base-color-400);
+	--PressedStateButton-color--pressedActive: var(--PressedStateButton-color--active);
+	--PressedStateButton-backgroundColor--active: var(--Content-color-200);
+	--PressedStateButton-borderColor: var(--Content-color-200);
+	--PressedStateButton-borderColor--active: var(--Content-color-300);
+	--PressedStateButton-borderColor--pressed: var(--PressedStateButton-borderColor);
+	--PressedStateButton-borderColor--pressedActive: var(--PressedStateButton-borderColor--active);
+}
