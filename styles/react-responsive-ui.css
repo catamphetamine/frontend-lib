@@ -64,7 +64,7 @@
 }
 
 .rrui__modal__contents {
-	box-shadow: 0 0 0 var(--Modal-borderWidth) var(--Modal-borderColor);
+	box-shadow: var(--Modal-boxShadow);
 }
 
 /* Remove this rule after a new version of

@@ -71,6 +71,7 @@
 	/* Modal. */
 	--Modal-borderColor: transparent;
 	--Modal-borderWidth: 0px;
+	--Modal-boxShadow: 0 0 0 var(--Modal-borderWidth) var(--Modal-borderColor);
 
 	/* Critical. */
 	--Critical-backgroundColor: var(--critical-color-600);
