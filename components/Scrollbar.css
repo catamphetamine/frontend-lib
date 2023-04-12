@@ -1,0 +1,9 @@
+body::-webkit-scrollbar-track {
+	background-color: var(--Scrollbar-backgroundColor);
+}
+
+body::-webkit-scrollbar-thumb {
+	background-color: var(--ScrollbarThumb-backgroundColor);
+	border-radius: var(--ScrollbarThumb-borderRadius);
+	border: var(--ScrollbarThumb-borderWidth) solid var(--ScrollbarThumb-borderColor);
+}

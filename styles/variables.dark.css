@@ -11,10 +11,6 @@
 	/* Menu. */
 	--Menu-color--active: var(--Content-color-600);
 
-	/* BackButton. */
-	--BackButton-backgroundColor--hover: rgba(255,255,255,0.02);
-	--BackButton-borderColor--hover: rgba(255,255,255,0.04);
-
 	/* Notification. */
 	--Notification-color: var(--Content-color-900);
 	--Notification-backgroundColor: var(--Content-backgroundColor);

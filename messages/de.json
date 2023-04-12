@@ -5,6 +5,8 @@
 		"empty": "Keine neuen Benachrichtigungen"
 	},
 	"error": "Fehler",
+	"logIn": "Anmeldung",
+	"logOut": "Ausloggen",
 	"default": "Standard",
 	"darkMode": "Dunkler Modus",
 	"settings": {

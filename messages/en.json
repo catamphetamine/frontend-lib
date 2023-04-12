@@ -5,6 +5,8 @@
 		"empty": "No new notifications"
 	},
 	"error": "Error",
+	"logIn": "Log In",
+	"logOut": "Log Out",
 	"default": "Default",
 	"darkMode": "Dark mode",
 	"settings": {

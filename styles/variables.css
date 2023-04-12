@@ -14,6 +14,10 @@
 	--Document-fontFamily--monospace: monospace;
 	--Document-fontWeight: normal;
 
+	/* Scrollbar. */
+	--ScrollbarThumb-borderWidth: initial;
+	--ScrollbarThumb-borderColor: initial;
+
 	/* LinearProgress. */
 	--LinearProgress-backgroundColor: rgb(167, 202, 237);
 	--LinearProgress-color: #1976d2;
