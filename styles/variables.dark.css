@@ -1,5 +1,9 @@
 /* Dark Mode. */
 .dark {
+	/* PageLoading. */
+	--PageLoading-backgroundColor: rgba(0,0,0,0.08);
+	--PageLoading-backgroundColor--initial: #000000;
+
 	/* Document. */
 	--Document-backgroundColor: #202020;
 

@@ -2,6 +2,12 @@
 
 /* Global. */
 :root {
+	/* PageLoading. */
+	--PageLoading-hideAnimationDuration: 160ms;
+	--PageLoading-showAnimationDuration: 600ms;
+	--PageLoading-showAnimationDelay: 500ms;
+	--PageLoading-zIndex: 1000;
+
 	/* Document. */
 	--Document-color: var(--Content-color-900);
 	--Document-backgroundColor: var(--Content-backgroundColor);
