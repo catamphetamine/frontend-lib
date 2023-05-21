@@ -13,8 +13,9 @@ export default function getReactPagesConfig({
 
 		reducers,
 		routes,
-		container: container,
+		container,
 
+		// Transform `errorPages` parameter into an `onError()` function of `react-pages`.
 		onError: createOnError(errorPages),
 
 		// Pass all API requests to the API server.
@@ -49,7 +50,6 @@ function createOnError(errorPages) {
 				redirect(`${errorPagePath}?url=${encodeURIComponent(url)}`)
 			}
 		}
-		console.log(errorPages[String(error.status)] || errorPages['500'])
 		redirectToErrorPage(errorPages[String(error.status)] || errorPages['500'])
 	}
 }
