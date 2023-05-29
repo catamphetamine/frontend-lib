@@ -41,7 +41,8 @@
 		"undo": "Отмена",
 		"showAll": "Показать все",
 		"showMore": "Показать ещё",
-		"showLess": "Свернуть"
+		"showLess": "Свернуть",
+		"attachFile": "Прикрепить файл"
 	},
 	"status": {
 		"done": "Готово"

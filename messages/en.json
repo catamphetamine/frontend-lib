@@ -41,7 +41,8 @@
 		"undo": "Undo",
 		"showAll": "Show all",
 		"showMore": "Show more",
-		"showLess": "Show less"
+		"showLess": "Show less",
+		"attachFile": "Attach a file"
 	},
 	"status": {
 		"done": "Done"

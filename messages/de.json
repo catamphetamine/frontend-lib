@@ -41,7 +41,8 @@
 		"undo": "Rückgängig machen",
 		"showAll": "Zeige alles",
 		"showMore": "Zeig mehr",
-		"showLess": "Zeige weniger"
+		"showLess": "Zeige weniger",
+		"attachFile": "eine Datei anhängen"
 	},
 	"status": {
 		"done": "Erledigt"

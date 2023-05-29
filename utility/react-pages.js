@@ -34,7 +34,7 @@ export default function getReactPagesConfig({
 }
 
 function createOnError(errorPages) {
-	return function onError(error, { path, url, redirect, dispatch, getState, server }) {
+	return function onError(error, { path, url, redirect, dispatch, useSelector, server }) {
 	  console.error('--------------------------------');
 	  console.error(`Error while loading "${url}"`);
 	  console.error('--------------------------------');
