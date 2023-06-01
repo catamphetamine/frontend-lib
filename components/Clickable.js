@@ -18,7 +18,7 @@ export default function Clickable({
 }) {
 	const [isClickInProgress, setClickInProgress] = useState()
 	const _isClickInProgress = useRef()
-	const emulateLinkClick = useRef()
+	const emulateStandardHyperlinkOnClickBehavior = useRef()
 	const container = useRef()
 	const panOrigin = useRef({})
 
@@ -53,7 +53,7 @@ export default function Clickable({
 	const onClickStop = useCallback(() => {
 		_isClickInProgress.current = false
 		setClickInProgress(false)
-		emulateLinkClick.current = undefined
+		emulateStandardHyperlinkOnClickBehavior.current = undefined
 	}, [
 		setClickInProgress
 	])
@@ -99,19 +99,24 @@ export default function Clickable({
 
 	const onPanEnd = useCallback((x, y) => {
 		if (_isClickInProgress.current) {
-			// Simulate `event` argument.
-			const event = {
-				preventDefault() {
-					this.defaultPrevented = true
-				},
-				stopPropagation() {}
-			}
-			if (onClick && !emulateLinkClick.current) {
-				onClick(event)
-			}
-			if (url) {
-				if (!event.defaultPrevented) {
+			const defaultOnClickBehavior = () => {
+				if (url) {
 					openLinkInNewTab(url)
+				}
+			}
+			if (emulateStandardHyperlinkOnClickBehavior.current || !onClick) {
+				defaultOnClickBehavior()
+			} else {
+				// Simulate `event` argument.
+				const event = {
+					preventDefault() {
+						this.defaultPrevented = true
+					},
+					stopPropagation() {}
+				}
+				onClick(event)
+				if (!event.defaultPrevented) {
+					defaultOnClickBehavior()
 				}
 			}
 		}
@@ -171,8 +176,17 @@ export default function Clickable({
 		switch (event.button) {
 			// Left mouse button.
 			case 0:
-				if (url && (event.ctrlKey || event.cmdKey)) {
-					emulateLinkClick.current = true
+				// If there's a "modifier" key pressed, emulate the standard hyperlink behavior.
+				// https://github.com/vercel/next.js/blob/0c3cc04591349fd9c64f05a5880e93a685283843/packages/next/src/client/link.tsx#L176-L187
+				if (
+					event.metaKey ||
+					event.ctrlKey ||
+					event.shiftKey ||
+					event.altKey
+				) {
+					if (url) {
+						emulateStandardHyperlinkOnClickBehavior.current = true
+					}
 				}
 				break
 			// Middle mouse button.
@@ -181,7 +195,7 @@ export default function Clickable({
 					// `.preventDefault()` to prevent the web browser
 					// from showing the "all-scroll" cursor.
 					event.preventDefault()
-					emulateLinkClick.current = true
+					emulateStandardHyperlinkOnClickBehavior.current = true
 					break
 				}
 				return onPanCancel()
@@ -192,7 +206,7 @@ export default function Clickable({
 				return onPanCancel()
 		}
 		if (!filterElement(event.target)) {
-			return
+			return onPanCancel()
 		}
 		onPanStart(
 			event.clientX,
