@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-pages'
 import classNames from 'classnames'
 
 import Button from './ButtonAsync.js'
@@ -10,6 +9,7 @@ import PopIconButton from './PopIconButton.js'
 import './Menu.css'
 
 export default function Menu({
+	Link,
 	className,
 	children
 }) {
@@ -19,7 +19,7 @@ export default function Menu({
 			{children.map((properties, i) => (
 				properties.type === 'separator' ?
 					<div key={i} className="menu-separator"/> :
-					<MenuItem key={i} {...properties} pathname={pathname}/>
+					<MenuItem key={i} {...properties} pathname={pathname} Link={Link}/>
 			))}
 		</div>
 	)
@@ -41,6 +41,8 @@ const menuItemShape = {
 }
 
 Menu.propTypes = {
+	Link: PropTypes.elementType.isRequired,
+	className: PropTypes.string,
 	children: PropTypes.arrayOf(PropTypes.oneOfType([
 		PropTypes.shape({
 			type: PropTypes.oneOf(['separator']).isRequired
@@ -67,6 +69,7 @@ function MenuItem({
 	size,
 	pathname,
 	isSelected,
+	Link,
 	className
 }) {
 	const OutlineIcon = icon
@@ -135,7 +138,8 @@ function MenuItem({
 
 MenuItem.propTypes = {
 	...menuItemShape,
-	pathname: PropTypes.string.isRequired
+	pathname: PropTypes.string.isRequired,
+	Link: PropTypes.elementType.isRequired
 }
 
 function getPathname(url) {

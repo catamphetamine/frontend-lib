@@ -1,9 +1,6 @@
 // import Container from './Container'
 
 export default function getReactPagesConfig({
-	reducers,
-	routes,
-	container,
 	transformUrl,
 	errorPages,
 	...rest
@@ -11,12 +8,8 @@ export default function getReactPagesConfig({
 	return {
 		...rest,
 
-		reducers,
-		routes,
-		container,
-
 		// Transform `errorPages` parameter into an `onError()` function of `react-pages`.
-		onError: createOnError(errorPages),
+		onLoadError: createOnLoadError(errorPages),
 
 		// Pass all API requests to the API server.
 		http: {
@@ -33,8 +26,11 @@ export default function getReactPagesConfig({
 	}
 }
 
-function createOnError(errorPages) {
-	return function onError(error, { path, url, redirect, dispatch, useSelector, server }) {
+// This error handler catches any errors originating from `.load()` functions
+// when those're defined on page components.
+//
+function createOnLoadError(errorPages) {
+	return function onLoadError(error, { location, url, redirect, dispatch, useSelector, server }) {
 	  console.error('--------------------------------');
 	  console.error(`Error while loading "${url}"`);
 	  console.error('--------------------------------');

@@ -16,11 +16,12 @@ export default function Clickable({
 	children,
 	...rest
 }) {
-	const [isClickInProgress, setClickInProgress] = useState()
-	const _isClickInProgress = useRef()
+	const [isClickInProgress, setClickInProgress] = useState(false)
+	const _isClickInProgress = useRef(false)
+
 	const emulateStandardHyperlinkOnClickBehavior = useRef()
 	const container = useRef()
-	const panOrigin = useRef({})
+	const panOrigin = useRef(null)
 
 	const filterElement = useCallback((element) => {
 		if (belongsToClickableElement(element, { stopBefore: container.current })) {
@@ -75,7 +76,7 @@ export default function Clickable({
 
 	const onPanStop = useCallback(() => {
 		onClickStop()
-		panOrigin.current = {}
+		panOrigin.current = null
 	}, [
 		onClickStop
 	])
@@ -297,7 +298,8 @@ Clickable.propTypes = {
 	url: PropTypes.string,
 	filter: PropTypes.func,
 	onClickClassName: PropTypes.string,
-	className: PropTypes.string
+	className: PropTypes.string,
+	children: PropTypes.node
 }
 
 Clickable.defaultProps = {

@@ -6,6 +6,9 @@ import Button from './Button.js'
 
 import { openLinkInNewTab as _openLinkInNewTab } from 'web-browser-input'
 
+// * If `onClick` property is passed, renders a `<button/>`.
+//   That `<button/>` can also be clicked with a `Ctrl`/`Cmd` "modifier" key
+//   which would open the `url` link in a new tab.
 const ButtonOrLink = React.forwardRef(function({
 	url,
 	children,
@@ -164,6 +167,8 @@ const ButtonOrLink = React.forwardRef(function({
 			</Button>
 		)
 	}
+
+	// For relative links, use the `Link` component from `react-pages`.
 	if (url[0] === '/') {
 		return (
 			<Link
@@ -174,6 +179,7 @@ const ButtonOrLink = React.forwardRef(function({
 			</Link>
 		)
 	}
+
 	return (
 		<a
 			{...rest}
