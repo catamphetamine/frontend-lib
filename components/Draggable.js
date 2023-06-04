@@ -28,11 +28,11 @@ export default function Draggable({
 		dragOffsetThreshold
 	])
 
-	const onDragStarted = useCallback(() => {
+	const onDragStarted = useCallback((x, y) => {
 		_isDragging.current = true
 		setDragging(true)
 		if (onDragStart) {
-			onDragStart()
+			onDragStart(x, y)
 		}
 	}, [
 		setDragging,
@@ -52,7 +52,7 @@ export default function Draggable({
 	])
 
 	const onMoveStart = useCallback((x, y) => {
-		onDragStarted()
+		onDragStarted(x, y)
 		dragOrigin.current = { x, y }
 	}, [
 		onDragStarted
