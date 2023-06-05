@@ -44,6 +44,9 @@
 		"showLess": "Zeige weniger",
 		"attachFile": "eine Datei anhängen"
 	},
+	"errors": {
+		"attachFileError": "Die Datei konnte nicht angehängt werden"
+	},
 	"status": {
 		"done": "Erledigt"
 	},

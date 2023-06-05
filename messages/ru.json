@@ -44,6 +44,9 @@
 		"showLess": "Свернуть",
 		"attachFile": "Прикрепить файл"
 	},
+	"errors": {
+		"attachFileError": "Не удалось прикрепить файл"
+	},
 	"status": {
 		"done": "Готово"
 	},

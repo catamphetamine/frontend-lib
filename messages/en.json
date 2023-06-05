@@ -44,6 +44,9 @@
 		"showLess": "Show less",
 		"attachFile": "Attach a file"
 	},
+	"errors": {
+		"attachFileError": "Couldn't attach the file"
+	},
 	"status": {
 		"done": "Done"
 	},
