@@ -42,7 +42,7 @@ function createOnLoadError(errorPages) {
 			//  and both get Status 401 HTTP Response).
 			// Or, for example, an infinite redirection loop in case of `/error`
 			// when there're overall page rendering bugs, etc.
-			if (path !== errorPagePath) {
+			if (location.pathname !== errorPagePath) {
 				redirect(`${errorPagePath}?url=${encodeURIComponent(url)}`)
 			}
 		}
