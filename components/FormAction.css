@@ -1,0 +1,32 @@
+@import "../styles/common";
+
+:root {
+	/* Form Actions are sometimes used outside `.form`,
+	   that's why these CSS variables are defined in `:root`. */
+	/* What? Where are they used outside `.form`? */
+	--FormAction-height: calc(var(--unit) * 3);
+	--FormAction-marginRight: calc(var(--unit) * 1.5);
+}
+
+.form__action {
+	margin-top: var(--FormRow-marginTop);
+}
+
+.form__action {
+	/* `display` property doesn't get overridden here
+	   because a random "button" component might define its own
+	   `display` which is not neccessarily "flex". */
+	/* display: flex; */
+	height: var(--FormAction-height);
+
+	&--inline {
+		height: var(--FormInput-height);
+	}
+}
+
+/*
+.form__action.TextButton {
+	padding-left: calc(var(--unit) * 0.5);
+	padding-right: calc(var(--unit) * 0.5);
+}
+*/

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { Modal } from 'react-responsive-ui'
 
 import Button from './Button.js'
+import FormAction from './FormAction.js'
+import FormActions from './FormActions.js'
 
 const globals = {}
 
@@ -83,19 +85,25 @@ function OkCancelModal_({
 			<Modal.Content>
 				{content}
 			</Modal.Content>
-			<Modal.Actions className="form__actions">
-				<Button
-					style="text"
-					onClick={onCancel}
-					className="form__action">
-					{input ? cancelLabel : noLabel}
-				</Button>
-				<Button
-					onClick={onOk}
-					style="fill"
-					className="form__action">
-					{input ? okLabel : yesLabel}
-				</Button>
+			<Modal.Actions>
+				<FormActions>
+					<FormAction>
+						<Button
+							style="text"
+							onClick={onCancel}
+							className="form__action">
+							{input ? cancelLabel : noLabel}
+						</Button>
+					</FormAction>
+					<FormAction>
+						<Button
+							onClick={onOk}
+							style="fill"
+							className="form__action">
+							{input ? okLabel : yesLabel}
+						</Button>
+					</FormAction>
+				</FormActions>
 			</Modal.Actions>
 		</Modal>
 	)

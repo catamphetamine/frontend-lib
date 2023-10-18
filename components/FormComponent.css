@@ -1,0 +1,40 @@
+@import "../styles/common";
+
+.form__component {
+	margin-top: var(--FormRow-marginTop);
+
+	&:first-child {
+		margin-top: 0;
+	}
+}
+
+.form__component {
+	/* `position: relative` is for `.rrui__input-error`. */
+	position: relative;
+
+	/* `position: relative` on `.form__component` is required
+	   for `width: 100%` to work. */
+	.rrui__input-error {
+		/*
+		position: absolute;
+		width: 100%;
+		margin-top: 0;
+		text-align: right;
+		*/
+		margin-top: 0.5em;
+		font-size: 85%;
+	}
+}
+
+.form__component--button {
+	margin-top: calc(var(--unit) * 1);
+}
+
+.form__component--button + .form__component--button {
+	margin-top: calc(var(--unit) * 0.75);
+}
+
+.form__component--description {
+	margin-top: calc(var(--unit) * 0.5);
+	margin-bottom: 0;
+}

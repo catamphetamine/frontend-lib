@@ -1,0 +1,30 @@
+@import "../styles/common";
+
+.form__actions {
+	display: flex;
+	justify-content: flex-end;
+
+	.form__action {
+		margin-right: var(--FormAction-marginRight);
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+}
+
+@mixin upto-m {
+	.Document--leftHanded {
+		.form__actions {
+			flex-direction: row-reverse;
+
+			.form__action {
+				margin-right: 0;
+				margin-left: var(--FormAction-marginRight);
+
+				&:last-child {
+					margin-left: 0;
+				}
+			}
+		}
+	}
+}

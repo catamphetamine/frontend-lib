@@ -1,0 +1,24 @@
+@import "../styles/common";
+
+.form__component-and-button {
+	display: flex;
+
+	margin-top: var(--FormRow-marginTop);
+
+	.form__component {
+		flex: 1;
+		margin-top: 0;
+		margin-right: var(--unit);
+	}
+
+	.form__action {
+		margin-top: 0;
+	}
+
+	/*
+	What's that supposed to be for:
+	.TextButton {
+		--FormAction-height: auto;
+	}
+	*/
+}
