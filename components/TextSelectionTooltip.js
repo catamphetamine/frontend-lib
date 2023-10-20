@@ -165,7 +165,23 @@ export default function TextSelectionTooltip({
 	useLayoutEffect(() => {
 		if (shouldUpdateTooltipPosition.current) {
 			if (updateTooltipPosition) {
-				updateTooltipPosition()
+				// `react-popper` library seems to be no longer maintained.
+				// There's a bug when it shows a React warning in the console:
+				// "Warning: flushSync was called from inside a lifecycle method.
+				//  React cannot flush when React is already rendering.
+				//  Consider moving this call to a scheduler task or micro task."
+				// https://github.com/floating-ui/react-popper/issues/458
+				//
+				// Some have suggested calling `Promise.resolve().then(updateTooltipPosition)`
+				// instead of just `updateTooltipPosition()` to work around that bug.
+				// The rationale for the suggested workaround is that `updateTooltipPosition()` function,
+				// which is `react-popper`'s `forceUpdate()` function, calls `flushSync()` inside.
+				// Therefore, it shouldn't be called in a callback right after the component has re-rendered
+				// because that results in a second render right after the first one, and React doesn't like that,
+				// presumably for performance reasons. Spacing out those two renders in time
+				// via `Promise.resolve()` seems to fix the React warning.
+				//
+				Promise.resolve().then(updateTooltipPosition)
 				shouldUpdateTooltipPosition.current = false
 			}
 		}
