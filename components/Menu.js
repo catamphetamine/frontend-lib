@@ -29,8 +29,8 @@ const menuItemCommonProps = {
 	title: PropTypes.string.isRequired,
 	size: PropTypes.string,
 	isSelected: PropTypes.bool,
-	icon: PropTypes.func.isRequired,
-	iconActive: PropTypes.func,
+	icon: PropTypes.elementType.isRequired,
+	iconSelected: PropTypes.elementType,
 	animate: PropTypes.oneOf(['pop'])
 }
 
@@ -63,7 +63,7 @@ function MenuItem({
 	url,
 	title,
 	icon,
-	iconActive,
+	iconSelected,
 	wait,
 	animate,
 	size,
@@ -73,7 +73,7 @@ function MenuItem({
 	className
 }) {
 	const OutlineIcon = icon
-	const FillIcon = iconActive || icon
+	const FillIcon = iconSelected || icon
 	if (url) {
 		// `url` may contain query parameters.
 		isSelected = (isSelected === undefined ? true : isSelected) && pathname === getPathname(url)
@@ -81,17 +81,18 @@ function MenuItem({
 	// activeClassName={isSelected ? 'menu-item--selected' : undefined}
 	className = classNames(
 		className,
+		isSelected && className && `${className}--selected`,
 		'menu-item',
 		size && `menu-item--${size}`,
 		isSelected && 'menu-item--selected',
-		iconActive && 'menu-item--fill',
-		!iconActive && 'menu-item--outline'
+		iconSelected && 'menu-item--fill',
+		!iconSelected && 'menu-item--outline'
 	)
 	if (animate === 'pop') {
 		return (
 			<PopIconButton
 				value={isSelected}
-				onIcon={iconActive}
+				onIcon={iconSelected}
 				offIcon={icon}
 				title={title}
 				buttonComponent={Button}

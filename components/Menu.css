@@ -103,12 +103,16 @@
 	display: none;
 }
 
-.menu-item--fill:active .menu-item__icon--outline,
+/*
+.menu-item__icon--semiFill {
+	display: none;
+}
+*/
+
 .menu-item--selected .menu-item__icon--outline {
 	display: none;
 }
 
-.menu-item--fill:active .menu-item__icon--fill,
 .menu-item--selected .menu-item__icon--fill {
 	display: block;
 }
