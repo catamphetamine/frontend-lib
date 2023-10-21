@@ -4,24 +4,30 @@ import classNames from 'classnames'
 
 import { belongsToClickableElement, openLinkInNewTab } from 'web-browser-input'
 
-import './Clickable.css'
-
 export default function Clickable({
-	panOffsetThreshold,
+	cursor,
+	panOffsetThreshold = 5,
+	doubleClickMaxInterval = 400,
 	filter,
 	url,
+	onDoubleClick,
 	onClick,
 	onClickClassName,
 	className,
 	children,
 	...rest
 }) {
+	if (onDoubleClick && onClick) {
+		console.warn('<Clickable/> supports either `onClick` or `onDoubleClick`, not both')
+	}
+
 	const [isClickInProgress, setClickInProgress] = useState(false)
 	const _isClickInProgress = useRef(false)
 
 	const emulateStandardHyperlinkOnClickBehavior = useRef()
 	const container = useRef()
 	const panOrigin = useRef(null)
+	const clicks = useRef([])
 
 	const filterElement = useCallback((element) => {
 		if (belongsToClickableElement(element, { stopBefore: container.current })) {
@@ -44,9 +50,13 @@ export default function Clickable({
 		panOffsetThreshold
 	])
 
-	const onClickStart = useCallback(() => {
+	const onClickStart = useCallback((event) => {
 		_isClickInProgress.current = true
 		setClickInProgress(true)
+		clicks.current.push({ at: Date.now(), event })
+		if (clicks.current.length > 10) {
+			clicks.current = clicks.current.slice(-10)
+		}
 	}, [
 		setClickInProgress
 	])
@@ -67,8 +77,8 @@ export default function Clickable({
 		filterElement
 	])
 
-	const onPanStart = useCallback((x, y) => {
-		onClickStart()
+	const onPanStart = useCallback((x, y, event) => {
+		onClickStart(event)
 		panOrigin.current = { x, y }
 	}, [
 		onClickStart
@@ -98,33 +108,74 @@ export default function Clickable({
 		onPanStop
 	])
 
-	const onPanEnd = useCallback((x, y) => {
-		if (_isClickInProgress.current) {
-			const defaultOnClickBehavior = () => {
-				if (url) {
-					openLinkInNewTab(url)
-				}
+	// Simulates an `event` argument.
+	// Such an `event` has `.preventDefault()` and `.stopPropatation()` methods.
+	const createEvent = useCallback(() => {
+		return {
+			...clicks.current[clicks.current.length - 1].event,
+			defaultPrevented: false,
+			preventDefault() {
+				this.defaultPrevented = true
+			},
+			stopPropagation() {}
+		}
+	}, [])
+
+	const onClickHappened = useCallback(() => {
+		const defaultOnClickBehavior = () => {
+			if (url) {
+				openLinkInNewTab(url)
 			}
-			if (emulateStandardHyperlinkOnClickBehavior.current || !onClick) {
-				defaultOnClickBehavior()
-			} else {
-				// Simulate `event` argument.
-				const event = {
-					preventDefault() {
-						this.defaultPrevented = true
-					},
-					stopPropagation() {}
+		}
+		if (emulateStandardHyperlinkOnClickBehavior.current || !(onClick || onDoubleClick)) {
+			defaultOnClickBehavior()
+		} else {
+			if (onDoubleClick) {
+				// Filter "previous clicks" by same `event.type`.
+				// This works around the cases when `onDoubleClick` handler
+				// was called for a single-click scenario on a mobile device
+				// due to it emitting both `touchstart` and `click` events.
+				//
+				// Possible `event.type` values:
+				// * `mousedown`
+				// * `touchstart`
+				// * (maybe) `pointerdown`
+				//
+				// Also filter by same `event.target` so that it only triggers a double-click event
+				// when making two clicks on the same DOM Element.
+				//
+				const latestClick = clicks.current[clicks.current.length - 1]
+				const clicks_ = clicks.current.filter((click) => {
+					return click.event.type === latestClick.event.type &&
+						click.event.target === latestClick.event.target
+				})
+				if (clicks_.length > 1) {
+					if (clicks_[clicks_.length - 1].at - clicks_[clicks_.length - 2].at <= doubleClickMaxInterval) {
+						onDoubleClick(createEvent())
+					}
 				}
+			} else {
+				const event = createEvent()
 				onClick(event)
 				if (!event.defaultPrevented) {
 					defaultOnClickBehavior()
 				}
 			}
 		}
-		onPanStop()
 	}, [
 		url,
 		onClick,
+		onDoubleClick,
+		createEvent
+	])
+
+	const onPanEnd = useCallback((x, y) => {
+		if (_isClickInProgress.current) {
+			onClickHappened()
+		}
+		onPanStop()
+	}, [
+		onClickHappened,
 		onPanStop
 	])
 
@@ -145,7 +196,8 @@ export default function Clickable({
 		}
 		onPanStart(
 			event.changedTouches[0].clientX,
-			event.changedTouches[0].clientY
+			event.changedTouches[0].clientY,
+			event
 		)
 	}, [
 		filterElement,
@@ -211,7 +263,8 @@ export default function Clickable({
 		}
 		onPanStart(
 			event.clientX,
-			event.clientY
+			event.clientY,
+			event
 		)
 	}, [
 		url,
@@ -281,6 +334,7 @@ export default function Clickable({
 			onMouseMove={onPointerMove}
 			onMouseLeave={onPointerOut}
 			onClick={_onClick}
+			style={cursor ? CURSOR_STYLES[cursor] : undefined}
 			className={classNames(
 				'Clickable',
 				className,
@@ -293,8 +347,12 @@ export default function Clickable({
 }
 
 Clickable.propTypes = {
-	panOffsetThreshold: PropTypes.number.isRequired,
-	onClick: PropTypes.func.isRequired,
+	cursor: PropTypes.oneOf(['pointer']),
+	panOffsetThreshold: PropTypes.number,
+	onClick: PropTypes.func,
+	// Standard React's `onDoubleClick` event handler doesn't work for touch events.
+	// `<Clickable onDoubleClick/>` does.
+	onDoubleClick: PropTypes.func,
 	url: PropTypes.string,
 	filter: PropTypes.func,
 	onClickClassName: PropTypes.string,
@@ -302,6 +360,6 @@ Clickable.propTypes = {
 	children: PropTypes.node
 }
 
-Clickable.defaultProps = {
-	panOffsetThreshold: 5
+const CURSOR_STYLES = {
+	pointer: { cursor: 'pointer' }
 }
