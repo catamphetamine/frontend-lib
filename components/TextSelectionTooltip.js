@@ -22,6 +22,7 @@ export default function TextSelectionTooltip({
 	const getContainer = useCallback(() => container || containerRef.current, [])
 
 	const [tooltipElement, setTooltipElement] = useState()
+	const updateTooltipPositionTimer = useRef()
 
 	// The `popper` library calculates an appropriate tooltip position
 	// based on the screen space available for it on top/bottom/left/right.
@@ -148,6 +149,10 @@ export default function TextSelectionTooltip({
 			if (isSelectionInProgress.current) {
 				_onSelectionEnd()
 			}
+			if (updateTooltipPositionTimer.current) {
+				clearTimeout(updateTooltipPositionTimer.current)
+				updateTooltipPositionTimer.current = undefined
+			}
 		}
 	}, [])
 
@@ -181,7 +186,21 @@ export default function TextSelectionTooltip({
 				// presumably for performance reasons. Spacing out those two renders in time
 				// via `Promise.resolve()` seems to fix the React warning.
 				//
-				Promise.resolve().then(updateTooltipPosition)
+				// Update: I've tested the suggested `Promise.resolve()` approach
+				// and it doesn't really work and the warning is still being shown.
+				// What worked though is `setTimeout(updateTooltipPosition, 0)`.
+				//
+				if (updateTooltipPositionTimer.current) {
+					clearTimeout(updateTooltipPositionTimer.current)
+					updateTooltipPositionTimer.current = undefined
+				}
+				updateTooltipPositionTimer.current = setTimeout(() => {
+					updateTooltipPositionTimer.current = undefined
+					if (isSelected.current) {
+						updateTooltipPosition()
+					}
+				}, 0)
+
 				shouldUpdateTooltipPosition.current = false
 			}
 		}
