@@ -19,13 +19,20 @@ function PopIconButton({
 	if (value !== initialValue.current) {
 		initial.current = false
 	}
+
 	// Store latest `value` to roll back if a change errors.
 	const latestValue = useRef(value)
+
 	// `value` should change immediately on click,
 	// so it's stored in `state`.
 	const [isActive, setIsActive] = useState(value)
-	useEffect(() => setIsActive(value), [value])
+
+	useEffect(() => {
+		setIsActive(value)
+	}, [value])
+
 	const Icon = isActive ? onIcon : offIcon
+
 	// Modify `onClick()` so that it sets `isActive` "prematurely",
 	// and then tracks whether `onClick()` did finish or error.
 	const onClick_ = useCallback(() => {
@@ -56,16 +63,17 @@ function PopIconButton({
 		// and it errors then the icon status is reset.
 		setIsActive(!isActive)
 	}, [onClick])
+
 	return (
 		<Button
 			{...rest}
 			ref={ref}
 			onClick={onClick_}>
 			<Icon
-				{...rest}
 				className={classNames(iconClassName, {
 					'PopIcon--animate': !initial.current && isActive
-				})}/>
+				})}
+			/>
 		</Button>
 	)
 }

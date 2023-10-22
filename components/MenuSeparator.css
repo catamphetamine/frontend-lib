@@ -1,0 +1,11 @@
+.MenuSeparator {
+	--MenuSeparator--marginLeft: calc(var(--MenuIcon-width) / 2);
+
+	width: 1px;
+	height: var(--MenuIcon-width);
+	margin-left: var(--MenuSeparator--marginLeft);
+	margin-right: var(--MenuSeparator--marginLeft);
+	color: inherit;
+	background-color: currentColor;
+	opacity: 0.1;
+}

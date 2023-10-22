@@ -1,0 +1,142 @@
+.MenuItem-container {
+	flex : 1;
+}
+
+/* Added `.Menu` parent selector so that `.Button` styles
+   don't overwrite `.MenuItem` styles in production mode
+   when Webpack decides to put all CSS in a single file
+   with `.Button` styles being placed after `.MenuItem` styles. */
+.Menu {
+	.MenuItem {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: var(--MenuIcon-width);
+		height: var(--MenuIcon-width);
+		/* Don't include side padding in width. */
+		box-sizing: content-box;
+		padding-left: var(--MenuIcon-padding);
+		padding-right: var(--MenuIcon-padding);
+		/*--rrui-button-side-padding: var(--MenuIcon-padding);*/
+		/*--rrui-button-busy-indicator-width: 1px;*/
+		color: var(--Menu-color);
+		&:active {
+			color: var(--Menu-color--active);
+		}
+		&:first-child {
+			margin-left: calc(-1 * var(--MenuIcon-padding));
+		}
+		&:last-child {
+			margin-right: calc(-1 * var(--MenuIcon-padding));
+		}
+	}
+
+	.MenuItem--selected {
+		color: var(--Menu-color--selected);
+	}
+}
+
+.MenuItem-icon {
+	display: none;
+	/*
+	width: var(--MenuIcon-width);
+	height: var(--MenuIcon-width);
+	*/
+	width: 100%;
+	height: 100%;
+	/* A weird fix for Tor Browser, otherwise it wouldn't navigate
+	  to the `/settings` page on `captchan` site when clicking the icon. */
+	pointer-events: none;
+	/* Fixes <svg/> icons being cut off in iOS Safari. */
+	/* https://stackoverflow.com/questions/24894921/svg-being-cut-off */
+	overflow: visible;
+}
+
+.MenuItem--size--s {
+	.MenuItem-icon {
+		padding: calc(var(--MenuIcon-width) / 20);
+	}
+}
+
+.MenuItem--size--xl {
+	.MenuItem-icon {
+		width: calc(var(--MenuIcon-width) + var(--MenuIcon-padding));
+		height: calc(var(--MenuIcon-width) + var(--MenuIcon-padding));
+	}
+}
+
+.MenuItem--size--xxl {
+	.MenuItem-icon {
+		width: calc(var(--MenuIcon-width) + var(--MenuIcon-padding) + var(--MenuIcon-width) / 4);
+		height: calc(var(--MenuIcon-width) + var(--MenuIcon-padding) + var(--MenuIcon-width) / 4);
+		margin-left: calc(-1 * var(--MenuIcon-width) / 6);
+		margin-right: calc(-1 * var(--MenuIcon-width) / 6);
+	}
+}
+
+.MenuItem-icon--pop {
+	display: block;
+}
+
+.MenuItem {
+	.MenuItem-icon--idleActive,
+	.MenuItem-icon--selected,
+	.MenuItem-icon--selectedActive {
+		display: none;
+	}
+
+	.MenuItem-icon--idle {
+		display: block;
+	}
+
+	&:active {
+		.MenuItem-icon--idle {
+			display: none;
+		}
+
+		.MenuItem-icon--idleActive {
+			display: block;
+		}
+	}
+}
+
+.MenuItem--selected {
+	.MenuItem-icon--idle,
+	.MenuItem-icon--idleActive,
+	.MenuItem-icon--selectedActive {
+		display: none;
+	}
+
+	.MenuItem-icon--selected {
+		display: block;
+	}
+
+	&:active {
+		.MenuItem-icon--selected,
+		.MenuItem-icon--idleActive {
+			display: none;
+		}
+
+		.MenuItem-icon--selectedActive {
+			display: block;
+		}
+	}
+}
+
+.MenuItem {
+	.MenuItem-activeOrNotActive-notActive {
+		display: block;
+	}
+	.MenuItem-activeOrNotActive-active {
+			display: none;
+	}
+
+	&:active {
+		.MenuItem-activeOrNotActive-notActive {
+			display: none;
+		}
+		.MenuItem-activeOrNotActive-active {
+			display: block;
+		}
+	}
+}
