@@ -4,6 +4,7 @@
 		"title": "Benachrichtigungen",
 		"empty": "Keine neuen Benachrichtigungen"
 	},
+	"accessDenied": "Zugriff verweigert",
 	"error": "Fehler",
 	"logIn": "Anmeldung",
 	"logOut": "Ausloggen",
@@ -31,7 +32,8 @@
 		"cancel": "Stornieren",
 		"yes": "Ja",
 		"no": "Nein",
-		"close": "Schließen",
+		"submit": "Submit",
+		"close": "Absenden",
 		"accept": "Akzeptieren",
 		"send": "Senden",
 		"learnMore": "Erfahren Sie mehr",

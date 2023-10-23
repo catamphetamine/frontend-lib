@@ -4,6 +4,7 @@
 		"title": "Notifications",
 		"empty": "No new notifications"
 	},
+	"accessDenied": "Access Denied",
 	"error": "Error",
 	"logIn": "Log In",
 	"logOut": "Log Out",
@@ -31,6 +32,7 @@
 		"cancel": "Cancel",
 		"yes": "Yes",
 		"no": "No",
+		"submit": "Submit",
 		"close": "Close",
 		"accept": "Accept",
 		"send": "Send",
