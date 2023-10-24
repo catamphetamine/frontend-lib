@@ -4,6 +4,10 @@
 	display: flex;
 	justify-content: flex-end;
 
+	.form__row {
+		margin-top: 0;
+	}
+
 	.form__action {
 		margin-right: var(--FormAction-marginRight);
 		&:last-child {

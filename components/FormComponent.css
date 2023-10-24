@@ -1,14 +1,6 @@
 @import "../styles/common";
 
 .form__component {
-	margin-top: var(--FormRow-marginTop);
-
-	&:first-child {
-		margin-top: 0;
-	}
-}
-
-.form__component {
 	.rrui__input-error {
 		margin-top: 0.5em;
 		font-size: 85%;

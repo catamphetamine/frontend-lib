@@ -5,14 +5,13 @@
 
 	margin-top: var(--FormRow-marginTop);
 
-	.form__component {
-		flex: 1;
+	.form__row {
 		margin-top: 0;
-		margin-right: var(--unit);
 	}
 
-	.form__action {
-		margin-top: 0;
+	.form__component {
+		flex: 1;
+		margin-right: var(--unit);
 	}
 
 	/*

@@ -5,7 +5,7 @@ import './FormComponentAndButton.css'
 
 export default function FormComponentAndButton({ children }) {
 	return (
-		<div className="form__component-and-button">
+		<div className="form__row form__component-and-button">
 			{children}
 		</div>
 	)

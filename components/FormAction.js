@@ -11,7 +11,7 @@ export default function FormAction({
 	return React.cloneElement(
 		React.Children.only(children),
 		{
-			className: classNames(children.props.className, 'form__action', {
+			className: classNames(children.props.className, 'form__row', 'form__action', {
 				'form__action--inline': inline
 			})
 		}

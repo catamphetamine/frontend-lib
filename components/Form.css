@@ -3,3 +3,11 @@
 :root {
 	--FormRow-marginTop: calc(var(--unit) * 1.5);
 }
+
+.form__row {
+	margin-top: var(--FormRow-marginTop);
+
+	&:first-child {
+		margin-top: 0;
+	}
+}

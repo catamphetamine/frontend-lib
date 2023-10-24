@@ -10,7 +10,7 @@ export default function FormComponent({
 	children
 }) {
 	return (
-		<div className={classNames(className, 'form__component', {
+		<div className={classNames(className, 'form__row', 'form__component', {
 			'form__component--button': type === 'button',
 			'form__component--description': type === 'description'
 		})}>
