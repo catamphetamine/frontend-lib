@@ -7,7 +7,7 @@ import PopIconButton from './PopIconButton.js'
 
 import './MenuItem.css'
 
-export default function MenuItem({
+function MenuItem({
 	onClick,
 	url,
 	title,
@@ -22,7 +22,7 @@ export default function MenuItem({
 	isSelected,
 	Link,
 	className
-}) {
+}, ref) {
 	const Icon = icon
 	const IconWhenSelected = iconSelected || Icon
 	const ActiveIcon = iconActive || Icon
@@ -74,6 +74,7 @@ export default function MenuItem({
 	if (animate === 'pop') {
 		return (
 			<PopIconButton
+				ref={ref}
 				value={isSelected}
 				onIcon={popIconButtonSelectedIcon}
 				offIcon={popIconButtonIcon}
@@ -98,6 +99,7 @@ export default function MenuItem({
 	if (onClick) {
 		return (
 			<Button
+				ref={ref}
 				wait={wait}
 				title={title}
 				onClick={onClick}
@@ -110,6 +112,7 @@ export default function MenuItem({
 	if (url) {
 		return (
 			<Link
+				ref={ref}
 				to={url}
 				title={title}
 				className={className}>
@@ -127,6 +130,10 @@ export default function MenuItem({
 	)
 }
 
+MenuItem = React.forwardRef(MenuItem)
+
+export default MenuItem
+
 export const menuItemCommonProps = {
 	title: PropTypes.string.isRequired,
 	size: PropTypes.string,
@@ -138,14 +145,19 @@ export const menuItemCommonProps = {
 	animate: PropTypes.oneOf(['pop'])
 }
 
-export const menuItemShape = {
+const menuItemShapeWithoutRef = {
 	...menuItemCommonProps,
 	url: PropTypes.string,
 	onClick: PropTypes.func
 }
 
+export const menuItemShape = {
+	ref: PropTypes.object,
+	...menuItemShapeWithoutRef
+}
+
 MenuItem.propTypes = {
-	...menuItemShape,
+	...menuItemShapeWithoutRef,
 	pathname: PropTypes.string.isRequired,
 	Link: PropTypes.elementType.isRequired
 }
