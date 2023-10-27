@@ -11,7 +11,7 @@ export const Form = React.forwardRef((props, ref) => (
 	<Form_
 		ref={ref}
 		{...props}
-		className={classNames('form', props.className)}
+		className={classNames('Form', props.className)}
 	/>
 ))
 

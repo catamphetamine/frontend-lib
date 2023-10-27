@@ -5,7 +5,7 @@ import './FormLabel.css'
 
 export default function FormLabel({ children }) {
 	return (
-		<div className="form__label">
+		<div className="FormLabel">
 			{children}
 		</div>
 	)

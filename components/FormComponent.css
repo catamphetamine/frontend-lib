@@ -1,21 +1,21 @@
 @import "../styles/common";
 
-.form__component {
+.FormComponent {
 	.rrui__input-error {
 		margin-top: 0.5em;
 		font-size: 85%;
 	}
 }
 
-.form__component--button {
+.FormComponent--button {
 	margin-top: calc(var(--unit) * 1);
 }
 
-.form__component--button + .form__component--button {
+.FormComponent--button + .FormComponent--button {
 	margin-top: calc(var(--unit) * 0.75);
 }
 
-.form__component--description {
+.FormComponent--description {
 	margin-top: calc(var(--unit) * 0.5);
 	margin-bottom: 0;
 }

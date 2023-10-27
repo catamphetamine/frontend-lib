@@ -1,16 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import './FormComponentAndButton.css'
+import FormComponentsAndButton from './FormComponentsAndButton.js'
 
 export default function FormComponentAndButton({ children }) {
 	return (
-		<div className="form__row form__component-and-button">
+		<FormComponentsAndButton count={1}>
 			{children}
-		</div>
+		</FormComponentsAndButton>
 	)
-}
-
-FormComponentAndButton.propTypes = {
-	children: PropTypes.node.isRequired
 }

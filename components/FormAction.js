@@ -11,13 +11,13 @@ export default function FormAction({
 	return React.cloneElement(
 		React.Children.only(children),
 		{
-			className: classNames(children.props.className, 'form__row', 'form__action', {
-				'form__action--inline': inline
+			className: classNames(children.props.className, 'FormRow', 'FormAction', {
+				'FormAction--inline': inline
 			})
 		}
 	)
 
-	// The following didn't work because `form__action` has a fixed `height` property
+	// The following didn't work because `FormAction` has a fixed `height` property
 	// and the `children` didn't stretch vertically to that height.
 	//
 	// return (

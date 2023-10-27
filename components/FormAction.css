@@ -8,11 +8,11 @@
 	--FormAction-marginRight: calc(var(--unit) * 1.5);
 }
 
-.form__action {
+.FormAction {
 	margin-top: var(--FormRow-marginTop);
 }
 
-.form__action {
+.FormAction {
 	/* `display` property doesn't get overridden here
 	   because a random "button" component might define its own
 	   `display` which is not neccessarily "flex". */
@@ -25,7 +25,7 @@
 }
 
 /*
-.form__action.TextButton {
+.FormAction.TextButton {
 	padding-left: calc(var(--unit) * 0.5);
 	padding-right: calc(var(--unit) * 0.5);
 }

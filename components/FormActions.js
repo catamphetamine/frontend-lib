@@ -5,7 +5,7 @@ import './FormActions.css'
 
 export default function FormAction({ children }) {
 	return (
-		<div className="form__row form__actions">
+		<div className="FormRow FormActions">
 			{children}
 		</div>
 	)

@@ -1,0 +1,42 @@
+@import "../styles/common";
+
+.FormComponentsAndButton {
+	display: flex;
+	margin-top: var(--FormRow-marginTop);
+
+	.FormRow {
+		margin-top: 0;
+	}
+
+	.FormComponent {
+		flex: 1;
+		margin-right: var(--unit);
+	}
+}
+
+@mixin xxs {
+	/* Basically, reverts any CSS properties set in `.FormComponentsAndButton` above. */
+	.FormComponentsAndButton--exceptSmallScreen {
+		display: block;
+		margin-top: 0;
+
+		.FormRow:not(:first-child) {
+			margin-top: var(--FormRow-marginTop);
+		}
+
+		.FormComponent {
+			flex: none;
+			margin-right: 0;
+		}
+	}
+}
+
+.FormComponentsAndButton--ratio-2-1-x {
+	.FormComponent:first-child {
+		flex: 1;
+	}
+
+	.FormComponent:nth-child(2) {
+		flex: 0.5;
+	}
+}

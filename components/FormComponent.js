@@ -9,13 +9,15 @@ export default function FormComponent({
 	className,
 	children
 }) {
+	const Component = type === 'description' ? 'p' : 'div'
+
 	return (
-		<div className={classNames(className, 'form__row', 'form__component', {
-			'form__component--button': type === 'button',
-			'form__component--description': type === 'description'
+		<Component className={classNames(className, 'FormRow', 'FormComponent', {
+			'FormComponent--button': type === 'button',
+			'FormComponent--description': type === 'description'
 		})}>
 			{children}
-		</div>
+		</Component>
 	)
 }
 

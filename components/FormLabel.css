@@ -1,5 +1,5 @@
 @import "../styles/common";
 
-.form__label {
+.FormLabel {
 	color: var(--Content-color-400);
 }

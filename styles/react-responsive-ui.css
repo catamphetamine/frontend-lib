@@ -59,7 +59,7 @@
 	font-family: var(--Document-fontFamily--monospace);
 }
 
-.rrui__modal__actions .form__action {
+.rrui__modal__actions .FormAction {
 	margin-top: 0;
 }
 

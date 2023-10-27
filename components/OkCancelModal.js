@@ -48,6 +48,7 @@ OkCancelModal.show = (parameters) => globals.show(parameters)
 
 function OkCancelModal_({
 	title,
+	text,
 	content,
 	input,
 	okLabel,
@@ -83,6 +84,11 @@ function OkCancelModal_({
 				</Modal.Title>
 			}
 			<Modal.Content>
+				{text &&
+					<p className="OkCancelModal-text">
+						{text}
+					</p>
+				}
 				{content}
 			</Modal.Content>
 			<Modal.Actions>
@@ -90,16 +96,14 @@ function OkCancelModal_({
 					<FormAction>
 						<Button
 							style="text"
-							onClick={onCancel}
-							className="form__action">
+							onClick={onCancel}>
 							{input ? cancelLabel : noLabel}
 						</Button>
 					</FormAction>
 					<FormAction>
 						<Button
 							onClick={onOk}
-							style="fill"
-							className="form__action">
+							style="fill">
 							{input ? okLabel : yesLabel}
 						</Button>
 					</FormAction>
@@ -113,7 +117,8 @@ OkCancelModal_.propTypes = {
 	// isOpen: PropTypes.bool,
 	// close: PropTypes.func.isRequired,
 	title: PropTypes.string,
-	content: PropTypes.node.isRequired,
+	text: PropTypes.string,
+	content: PropTypes.node,
 	input: PropTypes.bool,
 	okLabel: PropTypes.string.isRequired,
 	cancelLabel: PropTypes.string.isRequired,

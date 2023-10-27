@@ -1,14 +1,14 @@
 @import "../styles/common";
 
-.form__actions {
+.FormActions {
 	display: flex;
 	justify-content: flex-end;
 
-	.form__row {
+	.FormRow {
 		margin-top: 0;
 	}
 
-	.form__action {
+	.FormAction {
 		margin-right: var(--FormAction-marginRight);
 		&:last-child {
 			margin-right: 0;
@@ -18,10 +18,10 @@
 
 @mixin upto-m {
 	.Document--leftHanded {
-		.form__actions {
+		.FormActions {
 			flex-direction: row-reverse;
 
-			.form__action {
+			.FormAction {
 				margin-right: 0;
 				margin-left: var(--FormAction-marginRight);
 
