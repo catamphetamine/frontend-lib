@@ -1,0 +1,76 @@
+{
+	"languageName": "Dutch",
+	"notifications": {
+		"title": "Notificatie",
+		"empty": "Geen nieuwe notificaties"
+	},
+	"accessDenied": "Toegang geweigerd",
+	"error": "Error",
+	"logIn": "Inloggen",
+	"logOut": "Uitloggen",
+	"default": "Standaard",
+	"darkMode": "Donkere modus",
+	"settings": {
+		"title": "Instellingen"
+	},
+	"menu": "Menu",
+	"search": "Zoeken",
+	"noSearchResults": "Niets gevonden",
+	"form": {
+		"error": {
+			"required": "Vereist"
+		}
+	},
+	"actions": {
+		"edit": "Bewerk",
+		"post": "Post",
+		"save": "Opslaan",
+		"add": "Toevoegen",
+		"remove": "Verwijderen",
+		"retry": "Opnieuw proberen",
+		"ok": "Ok",
+		"cancel": "Annuleren",
+		"yes": "Ja",
+		"no": "Nee",
+		"submit": "Indienen",
+		"close": "Sluiten",
+		"accept": "Accepteren",
+		"send": "Stuur",
+		"learnMore": "Meer informatie",
+		"search": "Zoek",
+		"back": "Terug",
+		"forward": "Doorsturen",
+		"undo": "Ongedaan maken",
+		"showAll": "Toon alles",
+		"showMore": "Meer tonen",
+		"showLess": "Minder tonen",
+		"attachFile": "Voeg een bestand toe"
+	},
+	"errors": {
+		"attachFileError": "Kon het bestand niet toevoegen"
+	},
+	"status": {
+		"done": "Voltooid"
+	},
+	"role": {
+		"administrator": "Beheerder",
+		"moderator": "Moderator"
+	},
+	"errorPages": {
+		"404": {
+			"title": "Pagina niet gevonden"
+		},
+		"500": {
+			"title": "Error"
+		},
+		"503": {
+			"title": "Offline",
+			"description": "Kon niet met de server verbinden"
+		},
+		"requestedURL": "Pagina URL"
+	},
+	"cookies": {
+		"notice": "Deze website maakt gebruik van cookies en lokale opslag om de inhoud te personaliseren, om functies voor sociale media aan te bieden en om het internetverkeer te analyseren.",
+		"required": "U moet eerst het beleid voor cookies en lokale opslag accepteren."
+	}
+}
