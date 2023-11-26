@@ -57,8 +57,6 @@ body {
 	/* Always shows the vertical scrollbar so that
 	   it doesn't appear/disappear on different pages. */
 	overflow-y: scroll;
-	color: var(--Content-color-900);
-	background-color: var(--Content-backgroundColor);
 }
 
 /* Set `<body/>` background color
@@ -139,3 +137,46 @@ will be clickable (and that would be a bug).
 	flex-direction: column;
 }
 */
+
+/* The default background color for HTML documents is "white",
+   regardless of whether Dark Mode is enabled or not.
+   At least, that's how it is in late 2023.
+   https://github.com/jgthms/minireset.css/issues/17
+   This style sets the default background color to white in Light Mode
+   and the font color to black.
+*/
+@media (prefers-color-scheme: light) {
+	body {
+		background: white;
+		color: black;
+	}
+}
+
+/* The default background color for HTML documents is "white",
+   regardless of whether Dark Mode is enabled or not.
+   At least, that's how it is in late 2023.
+   https://github.com/jgthms/minireset.css/issues/17
+   This style sets the default background color to black in Dark Mode
+   and the font color to white, just so that the user is not greeted
+   with a flash of white content when navigating to the website
+   when being in Dark Mode.
+*/
+@media (prefers-color-scheme: dark) {
+	body {
+		background: black;
+		color: white;
+	}
+}
+
+/* When the application controls Dark Mode / Light Mode manually,
+   it does so by setting `light` or `dark` CSS class on the `<html/>` element.
+   In those cases, it usually does it first thing the scripts start executing,
+   in which case there'd be no flash of white content for a Dark Mode user.
+*/
+.light,
+.dark {
+	body {
+		color: var(--Document-color);
+		background-color: var(--Document-backgroundColor);
+	}
+}

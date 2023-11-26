@@ -1,7 +1,15 @@
 import React, { useRef, useEffect, useLayoutEffect, useCallback, useState, useMemo } from 'react'
 import PropTypes from 'prop-types'
-// import { useTransition, animated } from 'react-spring'
-import { usePopper } from 'react-popper'
+
+import {
+	useFloating,
+	flip,
+	shift,
+	inline,
+	autoUpdate
+} from '@floating-ui/react'
+
+import useSelectionListeners from './TextSelectionTooltip.useSelectionListeners.js'
 
 export default function TextSelectionTooltip({
 	as: Component,
@@ -21,28 +29,46 @@ export default function TextSelectionTooltip({
 	const customContainer = useMemo(() => container, [])
 	const getContainer = useCallback(() => container || containerRef.current, [])
 
-	const [tooltipElement, setTooltipElement] = useState()
-	const updateTooltipPositionTimer = useRef()
-
-	// The `popper` library calculates an appropriate tooltip position
-	// based on the screen space available for it on top/bottom/left/right.
-	// It also automatically re-calculates such tooltip position
-	// on events like "scroll", "resize", etc.
-	// It also exposes a manual `forceUpdate()` function
-	// that is used to update tooltip position on selection change.
 	const {
-		styles,
-		attributes,
-		forceUpdate: updateTooltipPosition
-	} = usePopper(
-		SelectionVirtualElement,
-		tooltipElement
-	)
+		addSelectionEndListener,
+		removeSelectionEndListener,
+		addSelectionChangeListener,
+		removeSelectionChangeListener
+	} = useSelectionListeners()
 
-	const shouldUpdateTooltipPosition = useRef()
+	// Copy-pasted from:
+	// https://codesandbox.io/s/floating-ui-react-range-selection-forked-svj76y
 
-  // const { styles, attributes }
-  // const tooltipPlacement = state && state.placement
+	// https://floating-ui.com/docs/useFloating
+	const { x, y, strategy, refs, context } = useFloating({
+		placement: 'top',
+		open: isTooltipShown,
+		onOpenChange: setTooltipShown,
+		middleware: [inline(), flip(), shift()],
+		whileElementsMounted: autoUpdate
+	})
+
+	// This function doesn't declare any "dependencies"
+	// because it's used in a listener, and a listener reference
+	// should stay the same in order to be removed later,
+	// so it shouldn't be updated (shouldn't have any "dependencies").
+	const updateSelectionRect = useCallback(() => {
+		if (window.getSelection().rangeCount > 0) {
+			const selectionRange = window.getSelection().getRangeAt(0)
+			refs.setReference({
+				getBoundingClientRect: () => selectionRange.getBoundingClientRect(),
+				getClientRects: () => selectionRange.getClientRects()
+			})
+			// Don't auto-update the tooltip position as the user keeps dragging their mouse
+			// when selecting a block of text.
+			// setTooltipShown(true)
+		}
+	}, [])
+
+	// const shouldUpdateTooltipPosition = useRef()
+
+	// const { styles, attributes }
+	// const tooltipPlacement = state && state.placement
 
 	// This function doesn't declare any "dependencies"
 	// because it's used in a listener, and a listener reference
@@ -62,8 +88,9 @@ export default function TextSelectionTooltip({
 	// should stay the same in order to be removed later,
 	// so it shouldn't be updated (shouldn't have any "dependencies").
 	const onSelectionFinished = useCallback(() => {
+		updateSelectionRect()
 		setTooltipShown(true)
-		shouldUpdateTooltipPosition.current = true
+		// shouldUpdateTooltipPosition.current = true
 		setSelection(new Selection({
 			onClear: onSelectionClear
 		}))
@@ -97,6 +124,13 @@ export default function TextSelectionTooltip({
 	// should stay the same in order to be removed later,
 	// so it shouldn't be updated (shouldn't have any "dependencies").
 	const onSelectionStart = useCallback(() => {
+		// When Chrome is switched into "touch" mode in developer tools:
+		// * Long-press on a word.
+		// * Tooltip appears.
+		// * Long-press on another word.
+		// * `onSelectionStart()` will get called, but `onSelectionChange()` won't,
+	  //   and neither `onSelectionEnd()` will. That's why it calls `updateSelectionRect()` here too.
+		updateSelectionRect()
 		isSelected.current = true
 		isSelectionInProgress.current = true
 		addSelectionEndListener(onSelectionEnd)
@@ -107,7 +141,11 @@ export default function TextSelectionTooltip({
 	// should stay the same in order to be removed later,
 	// so it shouldn't be updated (shouldn't have any "dependencies").
 	const onSelectionChange = useCallback(() => {
-		// Doesn't do anything.
+		if (window.getSelection().isCollapsed) {
+			setTooltipShown(false)
+		} else {
+			updateSelectionRect()
+		}
 	}, [])
 
 	// This listener doesn't declare any "dependencies"
@@ -143,137 +181,52 @@ export default function TextSelectionTooltip({
 	}, [])
 
 	useEffect(() => {
-		addSelectionChangeEventListener(onSelectionChangeEventListener)
+		addSelectionChangeListener(onSelectionChangeEventListener)
 		return () => {
-			removeSelectionChangeEventListener(onSelectionChangeEventListener)
+			removeSelectionChangeListener(onSelectionChangeEventListener)
 			if (isSelectionInProgress.current) {
 				_onSelectionEnd()
-			}
-			if (updateTooltipPositionTimer.current) {
-				clearTimeout(updateTooltipPositionTimer.current)
-				updateTooltipPositionTimer.current = undefined
 			}
 		}
 	}, [])
 
-	// First, `isTooltipShown` is set to `true` when selection is finished.
-	// Then, `<TooltipComponent/>` is rendered.
-	// Then, `<TooltipComponent/>` mounts and sets the `ref`.
-	// Then, `usePopper()` detects that the `ref` has been set,
-	// and makes `updateTooltipPosition()` function available
-	// so that it could calculate the correct tooltip position.
-	// So, only at that step can tooltip position be updated.
-	//
-	// This effect is run on every re-render
-	// but it only does its thing once.
-	//
-	useLayoutEffect(() => {
-		if (shouldUpdateTooltipPosition.current) {
-			if (updateTooltipPosition) {
-				// `react-popper` library seems to be no longer maintained.
-				// There's a bug when it shows a React warning in the console:
-				// "Warning: flushSync was called from inside a lifecycle method.
-				//  React cannot flush when React is already rendering.
-				//  Consider moving this call to a scheduler task or micro task."
-				// https://github.com/floating-ui/react-popper/issues/458
-				//
-				// Some have suggested calling `Promise.resolve().then(updateTooltipPosition)`
-				// instead of just `updateTooltipPosition()` to work around that bug.
-				// The rationale for the suggested workaround is that `updateTooltipPosition()` function,
-				// which is `react-popper`'s `forceUpdate()` function, calls `flushSync()` inside.
-				// Therefore, it shouldn't be called in a callback right after the component has re-rendered
-				// because that results in a second render right after the first one, and React doesn't like that,
-				// presumably for performance reasons. Spacing out those two renders in time
-				// via `Promise.resolve()` seems to fix the React warning.
-				//
-				// Update: I've tested the suggested `Promise.resolve()` approach
-				// and it doesn't really work and the warning is still being shown.
-				// What worked though is `setTimeout(updateTooltipPosition, 0)`.
-				//
-				if (updateTooltipPositionTimer.current) {
-					clearTimeout(updateTooltipPositionTimer.current)
-					updateTooltipPositionTimer.current = undefined
-				}
-				updateTooltipPositionTimer.current = setTimeout(() => {
-					updateTooltipPositionTimer.current = undefined
-					if (isSelected.current) {
-						updateTooltipPosition()
-					}
-				}, 0)
+	// Both `children` and `<TooltipComponent/>` will be put inside `<Component/>` container.
+	// The reason is that previously `<TooltipComponent/>` was rendered after `<Component/>` container
+	// and it created issues with CSS styles like `.Component + .OtherComponent`:
+	// those styles were broken when anything was selected because a `.TooltipComponent` element
+	// was rendered in-between those two.
 
-				shouldUpdateTooltipPosition.current = false
+	const elements = (
+		<>
+			{children}
+			{isTooltipShown &&
+				<TooltipComponent
+					ref={refs.setFloating}
+					style={{
+						position: strategy,
+						left: x || 0,
+						top: y || 0
+					}}
+					selection={selection}
+					{...tooltipProps}
+				/>
 			}
-		}
-	})
-
-	// const distance = 30 // in `px`
-	// const scale = 0.9
-	// const transitions = useTransition(isTooltipShown + tooltipPlacement, null, {
-	// 	unique: true,
-	// 	from: {
-	// 		transform: `translateY(${tooltipPlacement === 'bottom' ? '' : '-'}${px(distance)}) scale(${scaleFactor(scale)})`,
-	// 		opacity: 0
-	// 	},
-	// 	enter: {
-	// 		transform: `translateY(0) scale(1)`,
-	// 		opacity: 1
-	// 	},
-	// 	leave: {
-	// 		transform: `translateY(${tooltipPlacement === 'bottom' ? '' : '-'}${px(distance)}) scale(${scaleFactor(scale)})`,
-	// 		opacity: 0
-	// 	}
-	// })
-	//
-	// const AnimatedTooltipComponent = animated(TooltipComponent)
+		</>
+	)
 
 	return (
 		<>
 			{customContainer &&
-				children
+				elements
 			}
 			{!customContainer &&
 				<Component ref={containerRef} {...rest}>
-					{children}
+					{elements}
 				</Component>
-			}
-			{isTooltipShown &&
-				<TooltipComponent
-					ref={setTooltipElement}
-					style={styles.popper}
-					selection={selection}
-					{...tooltipProps}/>
 			}
 		</>
 	)
 }
-
-// import { Manager, Popper } from 'react-popper'
-
-// const TOOLTIP_PLACEMENT = 'top'
-// const POPPER_MODIFIERS = [{
-// 	name: 'flip'
-// }]
-
-// const [tooltipPlacement, setTooltipPlacement] = useState(TOOLTIP_PLACEMENT)
-
-// <Manager>
-// 	<Popper placement={TOOLTIP_PLACEMENT} modifiers={POPPER_MODIFIERS}>
-// 		{({ ref, style, placement }) => {
-// 			setTooltipPlacement(placement)
-// 			return (
-// 				<>
-// 					<AnimatedTooltipComponent
-// 						key="single"
-// 						ref={ref}
-// 						style={{
-// 							...style,
-// 							...props
-// 						}} .../>
-// 				</>
-// 			)
-// 		}}
-// 	</Popper>
-// </Manager>
 
 TextSelectionTooltip.propTypes = {
 	as: PropTypes.elementType,
@@ -294,97 +247,6 @@ TextSelectionTooltip.propTypes = {
 
 TextSelectionTooltip.defaultProps = {
 	as: 'div'
-}
-
-const onSelectionEndListeners = []
-
-function addSelectionEndListener(listener) {
-	if (onSelectionEndListeners.length === 0) {
-		listenSelectionEnd()
-	}
-	onSelectionEndListeners.push(listener)
-}
-
-function removeSelectionEndListener(listener) {
-	const i = onSelectionEndListeners.indexOf(listener)
-	onSelectionEndListeners.splice(i, 1)
-	if (onSelectionEndListeners.length === 0) {
-		unlistenSelectionEnd()
-	}
-}
-
-function onSelectionEnd() {
-	if (!document.getSelection().isCollapsed) {
-		const selectionContainer = getSelectionParentElement()
-		// `onSelectionEndListeners` might get modified in the process
-		// by calling `removeSelectionEndListener()`.
-		for (const listener of onSelectionEndListeners.slice()) {
-			listener(selectionContainer)
-		}
-	}
-}
-
-function listenSelectionEnd() {
-	document.addEventListener('mouseup', onSelectionEnd)
-	document.addEventListener('touchend', onSelectionEnd)
-}
-
-function unlistenSelectionEnd() {
-	document.removeEventListener('mouseup', onSelectionEnd)
-	document.removeEventListener('touchend', onSelectionEnd)
-}
-
-const onSelectionChangeEventListeners = []
-
-function addSelectionChangeEventListener(listener) {
-	if (onSelectionChangeEventListeners.length === 0) {
-		listenSelectionChange()
-	}
-	onSelectionChangeEventListeners.push(listener)
-}
-
-function removeSelectionChangeEventListener(listener) {
-	const i = onSelectionChangeEventListeners.indexOf(listener)
-	onSelectionChangeEventListeners.splice(i, 1)
-	if (onSelectionChangeEventListeners.length === 0) {
-		unlistenSelectionChange()
-	}
-}
-
-function onSelectionChangeEventListener() {
-	const selection = document.getSelection()
-	// `onSelectionChangeEventListeners` might get modified in the process
-	// by calling `removeSelectionChangeEventListener()`.
-	for (const listener of onSelectionChangeEventListeners.slice()) {
-		listener(selection)
-	}
-}
-
-function listenSelectionChange() {
-	document.addEventListener('selectionchange', onSelectionChangeEventListener)
-}
-
-function unlistenSelectionChange() {
-	document.removeEventListener('selectionchange', onSelectionChangeEventListener)
-}
-
-// https://stackoverflow.com/questions/7215479/get-parent-element-of-a-selected-text
-function getSelectionParentElement() {
-  const selection = window.getSelection()
-  if (selection.rangeCount) {
-    const parentElelment = selection.getRangeAt(0).commonAncestorContainer
-    if (parentElelment.nodeType === 1) {
-    	return parentElelment
-    }
-    return parentElelment.parentNode
-  }
-}
-
-// https://popper.js.org/react-popper/v2/virtual-elements/
-const SelectionVirtualElement = {
-  getBoundingClientRect() {
-    return window.getSelection().getRangeAt(0).getBoundingClientRect()
-  }
 }
 
 class Selection {
