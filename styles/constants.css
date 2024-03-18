@@ -20,6 +20,19 @@
 	--gray-color-800 : hsl(0, 0%, 32%);
 	--gray-color-900 : hsl(0, 0%, 27%);
 
+	--gray-color-50--transparent  : hsla(0, 0%, 0%, 4%);
+	--gray-color-100--transparent : hsla(0, 0%, 0%, 8%);
+	--gray-color-200--transparent : hsla(0, 0%, 0%, 13%);
+	--gray-color-300--transparent : hsla(0, 0%, 0%, 19%);
+	--gray-color-400--transparent : hsla(0, 0%, 0%, 28%);
+	--gray-color-500--transparent : hsla(0, 0%, 0%, 40%);
+	--gray-color-600--transparent : hsla(0, 0%, 0%, 52%);
+	--gray-color-650--transparent : hsla(0, 0%, 0%, 55%);
+	--gray-color-700--transparent : hsla(0, 0%, 0%, 60%);
+	--gray-color-750--transparent : hsla(0, 0%, 0%, 64%);
+	--gray-color-800--transparent : hsla(0, 0%, 0%, 68%);
+	--gray-color-900--transparent : hsla(0, 0%, 0%, 73%);
+
 	/* https://refactoringui.com/previews/building-your-color-palette */
 	--base-color-100 : hsl(198, 100%, 80%);
 	--base-color-200 : hsl(198, 100%, 69%);

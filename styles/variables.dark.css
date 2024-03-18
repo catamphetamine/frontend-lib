@@ -30,6 +30,9 @@
 	--Selection-backgroundColor: var(--Content-color-800);
 
 	/* Content. */
+
+	--Content-backgroundColor: #383838;
+
 	/* https://refactoringui.com/previews/building-your-color-palette */
 	--Content-color-50:  #3f3f3f;
 	--Content-color-100: #444444;
@@ -41,7 +44,18 @@
 	--Content-color-700: #989898;
 	--Content-color-800: #a0a0a0;
 	--Content-color-900: #b9b9b9;
-	--Content-backgroundColor: #383838;
+
+	--Content-color-50--transparent:  hsla(0, 0%, 100%, 0.247);
+	--Content-color-100--transparent: hsla(0, 0%, 100%, 0.267);
+	--Content-color-200--transparent: hsla(0, 0%, 100%, 0.333);
+	--Content-color-300--transparent: hsla(0, 0%, 100%, 0.392);
+	--Content-color-400--transparent: hsla(0, 0%, 100%, 0.443);
+	--Content-color-500--transparent: hsla(0, 0%, 100%, 0.475);
+	--Content-color-600--transparent: hsla(0, 0%, 100%, 0.533);
+	--Content-color-700--transparent: hsla(0, 0%, 100%, 0.596);
+	--Content-color-800--transparent: hsla(0, 0%, 100%, 0.627);
+	--Content-color-900--transparent: hsla(0, 0%, 100%, 0.725);
+
 	/* The default "bold" font weight is too bold
 	   for white text on black background. */
 	--Content-fontWeight--bold: 500;
