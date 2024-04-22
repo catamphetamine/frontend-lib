@@ -100,3 +100,7 @@
 .rrui__select__native {
 	border-bottom-width: 1px;
 }
+
+.rrui__input-field--multiline {
+	line-height: var(--Document-lineHeight);
+}
