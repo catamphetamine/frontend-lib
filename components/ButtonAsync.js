@@ -9,6 +9,7 @@ import classNames from 'classnames'
 import { setTimeout, clearTimeout } from 'request-animation-frame-timeout'
 
 import useIsMounted from '../hooks/useIsMounted.js'
+import useForwardedRef from '../hooks/useForwardedRef.js'
 
 import Button from './Button.js'
 
@@ -25,21 +26,7 @@ function Button_({
 	children,
 	...rest
 }, ref) {
-	const buttonRef = useRef()
-
-	const setRef = useCallback((node) => {
-		if (ref) {
-			if (typeof ref === 'function') {
-				ref(node)
-			} else {
-				ref.current = node
-			}
-		}
-		buttonRef.current = node
-	}, [
-		ref,
-		buttonRef
-	])
+	const { setRef, internalRef: buttonRef } = useForwardedRef(ref)
 
 	const isMounted = useIsMounted()
 	const [wait, setWait] = useState()
