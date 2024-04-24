@@ -50,7 +50,9 @@
 		"attachFileError": "Kon het bestand niet toevoegen"
 	},
 	"status": {
-		"done": "Voltooid"
+		"done": "Voltooid",
+		"enabled": "Ingeschakeld",
+		"disabled": "Gehandicapt"
 	},
 	"role": {
 		"administrator": "Beheerder",

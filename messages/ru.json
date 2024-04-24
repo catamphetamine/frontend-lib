@@ -50,7 +50,9 @@
 		"attachFileError": "Не удалось прикрепить файл"
 	},
 	"status": {
-		"done": "Готово"
+		"done": "Готово",
+		"enabled": "Включено",
+		"disabled": "Выключено"
 	},
 	"role": {
 		"administrator": "Администратор",

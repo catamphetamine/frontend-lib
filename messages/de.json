@@ -50,7 +50,9 @@
 		"attachFileError": "Die Datei konnte nicht angehängt werden"
 	},
 	"status": {
-		"done": "Erledigt"
+		"done": "Erledigt",
+		"enabled": "Ermöglicht",
+		"disabled": "Deaktiviert"
 	},
 	"role": {
 		"administrator": "Administrator",

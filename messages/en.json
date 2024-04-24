@@ -50,7 +50,9 @@
 		"attachFileError": "Couldn't attach the file"
 	},
 	"status": {
-		"done": "Done"
+		"done": "Done",
+		"enabled": "Enabled",
+		"disabled": "Disabled"
 	},
 	"role": {
 		"administrator": "Administrator",
