@@ -18,6 +18,7 @@
 	"noSearchResults": "Nothing found",
 	"form": {
 		"error": {
+			"invalid": "Invalid",
 			"required": "Required"
 		}
 	},

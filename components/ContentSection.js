@@ -5,8 +5,8 @@ import classNames from 'classnames'
 import './ContentSection.css'
 
 export function ContentSection({
-	padding,
-	background,
+	padding = true,
+	background = false,
 	className,
 	children,
 	...rest
@@ -27,14 +27,9 @@ export function ContentSection({
 
 ContentSection.propTypes = {
 	className: PropTypes.string,
-	padding: PropTypes.bool.isRequired,
-	background: PropTypes.bool.isRequired,
+	padding: PropTypes.bool,
+	background: PropTypes.bool,
 	children: PropTypes.node.isRequired
-}
-
-ContentSection.defaultProps = {
-	padding: true,
-	background: false
 }
 
 export function ContentSectionHeader({ lite, children }) {

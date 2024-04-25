@@ -18,6 +18,7 @@
 	"noSearchResults": "Nichts gefunden",
 	"form": {
 		"error": {
+			"invalid": "Ungültiger Wert",
 			"required": "Erforderlich"
 		}
 	},

@@ -18,6 +18,7 @@
 	"noSearchResults": "Niets gevonden",
 	"form": {
 		"error": {
+			"invalid": "ongeldige waarde",
 			"required": "Vereist"
 		}
 	},

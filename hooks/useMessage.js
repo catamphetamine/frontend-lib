@@ -5,8 +5,8 @@ import useMessageFormatter from './useMessageFormatter.js'
 /**
  * Returns a formatted message.
  * @param {string|null} messageLabel — Message label.
- * @param {[object]} parameters — Message label parameters.
- * @param {[string]} options.currency — Currency code that will be used when formatting currency amounts. Example: "USD".
+ * @param {object} [parameters] — Message label parameters.
+ * @param {string} [options.currency] — Currency code that will be used when formatting currency amounts. Example: "USD".
  * @return {string|null}
  */
 export default function useMessage(messageLabel, parameters, options) {

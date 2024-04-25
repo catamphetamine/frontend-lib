@@ -18,6 +18,7 @@
 	"noSearchResults": "Ничего не найдено",
 	"form": {
 		"error": {
+			"invalid": "Некорретное значение",
 			"required": "Обязательно"
 		}
 	},
