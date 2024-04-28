@@ -1,7 +1,7 @@
 // import Container from './Container'
 
 export default function getReactPagesConfig({
-	transformUrl,
+	transformUrl = undefined,
 	errorPages,
 	...rest
 }) {
