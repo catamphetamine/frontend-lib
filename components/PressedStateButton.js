@@ -7,7 +7,7 @@ import Button from './Button.js'
 import './PressedStateButton.css'
 
 function PressedStateButton({
-	component: Component,
+	component: Component = Button,
 	pressed,
 	link,
 	className,
@@ -33,12 +33,8 @@ PressedStateButton = React.forwardRef(PressedStateButton)
 export default PressedStateButton
 
 PressedStateButton.propTypes = {
-	component: PropTypes.elementType.isRequired,
+	component: PropTypes.elementType,
 	pressed: PropTypes.bool,
 	link: PropTypes.bool,
 	className: PropTypes.string
-}
-
-PressedStateButton.defaultProps = {
-	component: Button
 }

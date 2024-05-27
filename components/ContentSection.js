@@ -7,7 +7,7 @@ import './ContentSection.css'
 export function ContentSection({
 	padding = true,
 	background = false,
-	className,
+	className = undefined,
 	children,
 	...rest
 }) {

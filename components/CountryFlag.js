@@ -4,7 +4,12 @@ import classNames from 'classnames'
 
 import './CountryFlag.css'
 
-export default function CountryFlag({ country, name, flagsPath, className }) {
+export default function CountryFlag({
+	country,
+	name,
+	flagsPath = 'https://purecatamphetamine.github.io/country-flag-icons/3x2/',
+	className
+}) {
 	// Screen readers will pronounce `alt` but will skip `title` on images.
 	return (
 		<img
@@ -19,10 +24,6 @@ export default function CountryFlag({ country, name, flagsPath, className }) {
 CountryFlag.propTypes = {
 	country: PropTypes.string.isRequired,
 	name: PropTypes.string.isRequired,
-	flagsPath: PropTypes.string.isRequired,
+	flagsPath: PropTypes.string,
 	className: PropTypes.string
-}
-
-CountryFlag.defaultProps = {
-	flagsPath: 'https://purecatamphetamine.github.io/country-flag-icons/3x2/'
 }

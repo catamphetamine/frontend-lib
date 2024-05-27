@@ -17,11 +17,11 @@ const isTouch = typeof window !== 'undefined' && (
 
 export default function OnLongPress({
 	touchOnly,
-	delay,
+	delay = 400,
 	onLongPress,
 	suppressClickEvent,
-	maxMoveDistanceX,
-	maxMoveDistanceY,
+	maxMoveDistanceX = 10,
+	maxMoveDistanceY = 10,
 	children
 }) {
 	// Local timer object based on `requestAnimationFrame()`.
@@ -264,7 +264,7 @@ OnLongPress.propTypes = {
 	 * The duration a user has to "press" in order for a long press event to get triggered.
 	 * @type {number}
 	 */
-	delay: PropTypes.number.isRequired,
+	delay: PropTypes.number,
 
 	/**
 	 * The handler function that gets called on long press.
@@ -283,13 +283,13 @@ OnLongPress.propTypes = {
 	 * Maximum number of X pixels the mouse can move during long press before it is canceled.
 	 * @type {number}
 	 */
-	maxMoveDistanceX: PropTypes.number.isRequired,
+	maxMoveDistanceX: PropTypes.number,
 
 	/**
 	 * Maximum number of Y pixels the mouse can move during long press before it is canceled.
 	 * @type {number}
 	 */
-	maxMoveDistanceY: PropTypes.number.isRequired,
+	maxMoveDistanceY: PropTypes.number,
 
 	/**
 	 * A function that should return a React element that will be listening to "long press" events.
@@ -297,12 +297,6 @@ OnLongPress.propTypes = {
 	 * Example: `(clickableElementPropsType) => <div {...clickableElementPropsType}/>`.
 	 */
 	children: PropTypes.func.isRequired
-}
-
-OnLongPress.defaultProps = {
-	delay: 400,
-	maxMoveDistanceX: 10,
-	maxMoveDistanceY: 10
 }
 
 export const clickableElementPropsType = PropTypes.oneOfType([

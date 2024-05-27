@@ -8,9 +8,9 @@ import './Button.css'
  * An unstyled `<button/>`.
  */
 let Button = ({
-	type,
-	style,
-	className,
+	type = 'button',
+	style = undefined,
+	className = undefined,
 	children,
 	...rest
 }, ref) => {
@@ -33,7 +33,7 @@ let Button = ({
 Button = React.forwardRef(Button)
 
 Button.propTypes = {
-	type: PropTypes.oneOf(['button', 'submit']).isRequired,
+	type: PropTypes.oneOf(['button', 'submit']),
 	style: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.object
@@ -42,10 +42,6 @@ Button.propTypes = {
 	// Sometimes there can be empty buttons:
 	// for example, round buttons styled via CSS.
 	children: PropTypes.node //.isRequired
-}
-
-Button.defaultProps = {
-	type: 'button'
 }
 
 export default Button

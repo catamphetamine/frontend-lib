@@ -18,12 +18,12 @@ import Button from './Button.js'
  * until a `Promise`, (if) returned by `onClick`, finishes.
  */
 function Button_({
-	keepFocus,
-	disabled,
-	wait: waitProperty,
-	onClick,
-	className,
-	children,
+	keepFocus = false,
+	disabled = false,
+	wait: waitProperty = false,
+	onClick = undefined,
+	className = undefined,
+	children = undefined,
 	...rest
 }, ref) {
 	const { setRef, internalRef: buttonRef } = useForwardedRef(ref)

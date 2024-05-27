@@ -6,7 +6,7 @@ export default function Draggable({
 	onDragStart,
 	onDragEnd,
 	onDragMove,
-	dragOffsetThreshold,
+	dragOffsetThreshold = 5,
 	draggingClassName,
 	className,
 	children,
@@ -227,12 +227,8 @@ Draggable.propTypes = {
 	onDragStart: PropTypes.func,
 	onDragEnd: PropTypes.func,
 	onDragMove: PropTypes.func.isRequired,
-	dragOffsetThreshold: PropTypes.number.isRequired,
+	dragOffsetThreshold: PropTypes.number,
 	draggingClassName: PropTypes.string,
 	className: PropTypes.string,
 	children: PropTypes.node
-}
-
-Draggable.defaultProps = {
-	dragOffsetThreshold: 5
 }

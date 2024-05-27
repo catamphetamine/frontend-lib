@@ -12,10 +12,10 @@ import {
 import useSelectionListeners from './TextSelectionTooltip.useSelectionListeners.js'
 
 export default function TextSelectionTooltip({
-	as: Component,
+	as: Component = 'div',
 	TooltipComponent,
 	tooltipProps,
-	container,
+	container = undefined,
 	children,
 	...rest
 }) {
@@ -243,10 +243,6 @@ TextSelectionTooltip.propTypes = {
 	// `children` are wrapped in a `<div/>`.
 	container: PropTypes.any, // `instanceOf(Element)` wouldn't work in Node.js.
 	children: PropTypes.node.isRequired
-}
-
-TextSelectionTooltip.defaultProps = {
-	as: 'div'
 }
 
 class Selection {

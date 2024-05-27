@@ -5,15 +5,15 @@ import classNames from 'classnames'
 import { belongsToClickableElement, openLinkInNewTab } from 'web-browser-input'
 
 export default function Clickable({
-	cursor,
+	cursor = undefined,
 	panOffsetThreshold = 5,
 	doubleClickMaxInterval = 400,
-	filter,
-	url,
-	onDoubleClick,
-	onClick,
-	onClickClassName,
-	className,
+	filter = undefined,
+	url = undefined,
+	onDoubleClick = undefined,
+	onClick = undefined,
+	onClickClassName = undefined,
+	className = undefined,
 	children,
 	...rest
 }) {

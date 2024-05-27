@@ -1,5 +1,5 @@
-// import type { MutableRefObject } from 'react';
-import { useCallback, useRef } from 'react';
+// import type { MutableRefObject } from 'react'
+import { useCallback, useRef } from 'react'
 
 // When a React component receives a `ref` which it is supposed to "forward"
 // and when it would like to also read that `ref` in its internal implementation,
