@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 142 142">
+<g fill="none" stroke="currentColor" stroke-width="5">
+<circle class="st0" cx="71" cy="71" r="68.3"/>
+<circle class="st0" cx="71.4" cy="27.6" r="1"/>
+<circle class="st0" cx="71.4" cy="94.1" r="1"/>
+<circle class="st0" cx="71.4" cy="112.7" r="2.5"/>
+<line stroke-width="7" x1="71.4" y1="27.6" x2="71.4" y2="94.1"/>
+</g>
+</svg>

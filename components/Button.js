@@ -11,7 +11,7 @@ let Button = ({
 	type = 'button',
 	style = undefined,
 	className = undefined,
-	children,
+	children = undefined,
 	...rest
 }, ref) => {
 	return (

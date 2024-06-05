@@ -16,9 +16,9 @@ export function ContentSection({
 	// therefore disabling margin collapse for all cases
 	// to rule out the confusion.
 	return (
-		<div {...rest} className={classNames(className, 'content-section', {
-			// 'content-section--no-padding': !padding,
-			'content-section--background': background
+		<div {...rest} className={classNames(className, 'ContentSection', {
+			// 'ContentSection--noPadding': !padding,
+			'ContentSection--background': background
 		})}>
 			{children}
 		</div>
@@ -34,8 +34,8 @@ ContentSection.propTypes = {
 
 export function ContentSectionHeader({ lite, children }) {
 	return (
-		<h2 className={classNames('content-section__header', {
-			'content-section__header--lite': lite
+		<h2 className={classNames('ContentSectionHeader', {
+			'ContentSectionHeader--lite': lite
 		})}>
 			{children}
 		</h2>
@@ -50,7 +50,7 @@ ContentSectionHeader.propTypes = {
 
 export function ContentSections({ className, children }) {
 	return (
-		<div className={classNames('content-sections', className)}>
+		<div className={classNames('ContentSections', className)}>
 			{children}
 		</div>
 	)
@@ -68,9 +68,9 @@ export function ContentSectionDescription({
 }) {
 	return (
 		<p className={classNames(
-			'content-section__description',
-			marginBottom && `content-section__description--marginBottom${capitalizeFirstLetter(marginBottom)}`,
-			marginTop && `content-section__description--marginTop${capitalizeFirstLetter(marginTop)}`
+			'ContentSectionDescription',
+			marginBottom && `ContentSectionDescription--marginBottom${capitalizeFirstLetter(marginBottom)}`,
+			marginTop && `ContentSectionDescription--marginTop${capitalizeFirstLetter(marginTop)}`
 		)}>
 			{children}
 		</p>
