@@ -11,6 +11,11 @@ export default async function getAudioFileInfoFromId3Tags(file) {
 		// Catch the error so that it doesn't crash the app
 		// because ID3 tags aren't essential to the app's operation.
 		console.error(error)
-		return {}
+		return {
+			title: null,
+			album: null,
+			artist: null,
+			year: null
+		}
 	}
 }
