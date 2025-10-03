@@ -60,8 +60,11 @@
 		"moderator": "Moderator"
 	},
 	"errorPages": {
+		"403": {
+			"title": "Nicht erlaubt"
+		},
 		"404": {
-			"title": "Seite nicht gefunden"
+			"title": "Nicht gefunden"
 		},
 		"500": {
 			"title": "Error"

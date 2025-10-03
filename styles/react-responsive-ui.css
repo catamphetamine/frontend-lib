@@ -104,3 +104,11 @@
 .rrui__input-field--multiline {
 	line-height: var(--Document-lineHeight);
 }
+
+.rrui__list__list-item {
+	border-top: 1px solid var(--Content-color-50);
+
+	&:first-child {
+		border-top: none;
+	}
+}
